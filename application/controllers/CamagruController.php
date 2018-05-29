@@ -11,7 +11,7 @@ class CamagruController extends AppController {
     public function __construct($route) {
         parent::__construct($route);
         session_start();
-        $this->user = "Выйти"; //здесь нужно вывести логин пользователя
+        $this->user = "vasya"; //здесь нужно вывести логин пользователя
         if (isset($_SESSION['login'])) {
             $model = new Camagru($_SESSION['login']);
         }

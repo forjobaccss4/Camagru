@@ -17,7 +17,7 @@ abstract class  Controller {
 
     public function getView() {
         $vObj = new View($this->route, $this->layout, $this->view);
-        $vObj->render($this->message, $this->linkToImage);
+        $vObj->render($this->message, $this->user);
     }
 }
 ?>
