@@ -10,6 +10,7 @@ function validate_form() {
         valid = false;
     }
     if (valid === true) {
+        document.getElementById("hash").value = window.location.pathname;
         document.authorization_form.action = "/recovery/change";
     }
     return valid;

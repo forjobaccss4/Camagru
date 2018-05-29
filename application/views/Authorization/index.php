@@ -1,5 +1,11 @@
 <div class="container">
     <canvas id="matrix"></canvas>
+    <nav id="primary_nav_wrap">
+        <ul>
+            <li><a href="/authorization">Авторизация</a>
+            </li>
+        </ul>
+    </nav>
     <div id="forLoginPage" style="display: flex; position: absolute">
     <form name="authorization_form" method="post" action="/authorization">
         <input checked="" id="signin" name="action" type="radio" value="signin" onclick="getNameOfField(this.id)">

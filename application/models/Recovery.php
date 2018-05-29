@@ -27,7 +27,6 @@ class Recovery extends Model {
             $this->table = 'user';
             if ($printThis = $this->findOne($hash[2], 'hash')) {
                 $this->updateOne($this->table, 'confirm', '1', 'id', $printThis[0]['id']);
-                $this->updateOne($this->table, 'hash', "' '", 'id', $printThis[0]['id']);
                 return true;
             }else {
                 ErrorController::errorPage();
@@ -73,12 +72,23 @@ class Recovery extends Model {
 
     }
 
-    public function changePass($url, $newPassword) { //Нужно доделать
+    public function changePass($url, $password, $newPassword) { //Нужно доделать
         $this->table = 'user';
         $hash = explode('/', $url);
+        $password = crypt(trim(htmlspecialchars(stripslashes($password))), "ZqbHp9lb");
         $newPassword = crypt(trim(htmlspecialchars(stripslashes($newPassword))), "ZqbHp9lb");
-        $findHash = $this->findOne($hash[2], 'hash');
-        $this->updateOne($this->table, 'password', $newPassword, 'id', $findHash[0]['id']);
+        if (!hash_equals($password, $newPassword)) {
+            ErrorController::errorPage();
+        }
+        $newPassword = "'" . $newPassword . "'";
+        if ($findHash = $this->findOne($hash[3], 'hash')) {
+            $this->updateOne($this->table, 'password', $newPassword, 'id', $findHash[0]['id']);
+            $this->updateOne($this->table, 'hash', "' '", 'id', $findHash[0]['id']);
+            header('Location: /authorization');
+        }else {
+            ErrorController::errorPage();
+        }
+
     }
 }
 
