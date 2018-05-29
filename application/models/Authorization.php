@@ -117,7 +117,6 @@ class Authorization extends Model
     }
 
     public function checkConfirmUrl($url) {
-        $routeError = ['controller' => 'Error', 'action' => 'error'];
         $hash = explode('/', $url);
         if (count($hash) == 3) {
             $this->table = 'user';
@@ -127,9 +126,9 @@ class Authorization extends Model
                 header('Location: /authorization');
             }
             else
-                ErrorController::errorPage($routeError);
+                ErrorController::errorPage();
         }
         else
-            ErrorController::errorPage($routeError);
+            ErrorController::errorPage();
     }
 }

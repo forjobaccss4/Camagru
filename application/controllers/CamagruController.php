@@ -1,6 +1,5 @@
 <?php
 
-
 namespace application\controllers;
 
 use application\models\Camagru;
@@ -11,9 +10,12 @@ class CamagruController extends AppController {
     public function __construct($route) {
         parent::__construct($route);
         session_start();
-        $this->user = "vasya"; //здесь нужно вывести логин пользователя
+        if (!isset($_SESSION['login'])) {
+            ErrorController::errorPage();
+        }
         if (isset($_SESSION['login'])) {
             $model = new Camagru($_SESSION['login']);
+            $this->user = $_SESSION['login']; //здесь нужно вывести логин пользователя
         }
 
     }
@@ -28,6 +30,14 @@ class CamagruController extends AppController {
         } else {
             ErrorController::errorPage();
         }
+    }
+
+    public function cabinetAction() {
+
+    }
+
+    public function changeAction() {
+        debug($_POST); //Нужно сделать кабинет, подогнать стили
     }
 }
 ?>
