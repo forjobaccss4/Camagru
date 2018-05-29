@@ -8,7 +8,7 @@ abstract class  Controller {
     public $view;
     public $layout;
     public $message = ''; //Пользовательские сообщения
-    public $linkToImage = '';
+    public $user = '';
 
     public function __construct($route) {
         $this->route = $route;

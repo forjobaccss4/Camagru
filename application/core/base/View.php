@@ -15,7 +15,7 @@ class View {
         $this->view = $view;
     }
 
-    public function render($message, $linkToImage) {
+    public function render($message, $user) {
         $file_view = APP . "/views/{$this->route['controller']}/{$this->view}.php";
         ob_start();
         if(is_file($file_view)) {
