@@ -9,6 +9,7 @@ abstract class  Controller {
     public $layout;
     public $message = ''; //Пользовательские сообщения
     public $user = '';
+    public $button = '';
 
     public function __construct($route) {
         $this->route = $route;
@@ -17,7 +18,7 @@ abstract class  Controller {
 
     public function getView() {
         $vObj = new View($this->route, $this->layout, $this->view);
-        $vObj->render($this->message, $this->user);
+        $vObj->render($this->message, $this->user, $this->button);
     }
 }
 ?>

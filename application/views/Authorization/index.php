@@ -7,8 +7,7 @@
     <canvas id="matrix"></canvas>
     <nav id="primary_nav_wrap">
         <ul>
-            <li><a href="/authorization">Авторизация</a>
-            </li>
+            <?=$logout?>
         </ul>
     </nav>
     <div id="forLoginPage" style="display: flex; position: absolute">

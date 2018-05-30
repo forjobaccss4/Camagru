@@ -17,13 +17,17 @@ class CamagruController extends AppController {
             $model = new Camagru($_SESSION['login']);
             $this->user = $_SESSION['login']; //здесь нужно вывести логин пользователя
         }
-
     }
 
     public function indexAction() {
+        session_start();
+        if (isset($_SESSION['login'])) {
+            $this->button = "<li style=\"float: right\"><a href=\"/camagru/logout\">Выход</a></li>";
+        }
     }
 
     public function logoutAction() {
+        session_start();
         if (isset($_SESSION['login'])) {
             unset($_SESSION['login']);
             header('Location: /authorization');
