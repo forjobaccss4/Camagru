@@ -1,4 +1,3 @@
-var defaultClick = 1;
 var login, password, name, email = '';
 
 function validate_form() {

@@ -20,7 +20,6 @@ class CamagruController extends AppController {
     }
 
     public function indexAction() {
-        session_start();
         if (isset($_SESSION['login'])) {
             $this->button = "<li style=\"float: right\"><a href=\"/camagru/logout\">Выход</a></li>";
         }

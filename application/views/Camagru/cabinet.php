@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/pure-min.css" integrity="sha384-nn4HPE8lTHyVtfCBi5yW9d20FjT8BJwUXyWZT9InLYax14RDjBj46LmSztkmNP9w" crossorigin="anonymous">
     <link rel="stylesheet" href="/css/menu.css">
 </head>
-<div class="pure-g" style="display: flex; justify-content: center">
+<div id="forLoginPage" class="pure-g" style="display: flex; justify-content: center">
     <div class="pure-u" style="position: absolute">
         <canvas id="matrix"></canvas>
     </div>
@@ -52,25 +52,30 @@
                 opacity: .7;
             }
         </style>
-        <form class="pure-form pure-form-stacked">
+        <form class="pure-form pure-form-stacked" method="post" action="">
              <fieldset class="pure-group">
-            <input class="pure-input-1" type="text" placeholder="Login">
+            <input id="enteredLogin" name="login" class="pure-input-1" type="text" placeholder="Login">
             </fieldset>
-            <button type="submit" class="button-success pure-button pure-button-primary pure-input-1">Изменить логин</button>
+            <button id="change_login" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить логин</button>
+            <p id="errorLogin" style="color: red"></p>
             <fieldset class="pure-group">
-                <input class="pure-input-1" type="password" placeholder="Password">
-                <input class="pure-input-1" type="password" placeholder="Repeat password">
+                <input id="enteredPass" name="pass" class="pure-input-1" type="password" placeholder="New Password">
+                <input id="enteredRepass" name="repass" class="pure-input-1" type="password" placeholder="Repeat new password">
             </fieldset>
-            <button type="submit" class="button-success pure-button pure-button-primary pure-input-1">Изменить пароль</button>
+            <button id="change_pass" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить пароль</button>
+            <p id="errorPass" style="color: red"></p>
             <fieldset class="pure-group">
-                <input class="pure-input-1" type="text" placeholder="Name">
+                <input id="enteredName" name="name" class="pure-input-1" type="text" placeholder="Name">
             </fieldset>
-            <button type="submit" class="button-success pure-button pure-button-primary pure-input-1">Изменить имя</button>
+            <button id="change_name" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить имя</button>
+            <p id="errorName" style="color: red"></p>
             <fieldset class="pure-group">
-                <input class="pure-input-1" type="text" placeholder="Email">
+                <input id="enteredMail" name="email" class="pure-input-1" type="text" placeholder="Email">
             </fieldset>
-            <button type="submit" class="button-success pure-button pure-button-primary pure-input-1">Изменить email</button>
+            <button id="change_mail" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить email</button>
+            <p id="errorMail" style="color: red"></p>
         </form>
     </div>
 </div>
-    <script src="../../../js/matrixBackground.js"></script>
+<script src="/js/matrixBackground.js"></script>
+<script src="/js/changeUserDataPage.js"></script>
