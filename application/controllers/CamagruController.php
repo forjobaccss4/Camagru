@@ -40,7 +40,9 @@ class CamagruController extends AppController {
     }
 
     public function changeAction() {
-        debug($_POST); //Нужно сделать кабинет, подогнать стили
+        $model = new Camagru();
+        $model->changePersonalData($_POST);
+
     }
 }
 ?>

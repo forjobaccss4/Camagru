@@ -1,3 +1,4 @@
+<body style="background-color: black">
 <head>
     <link rel="stylesheet" href="../../../css/styles.css">
     <link rel="stylesheet" href="/css/cabinet.css">
@@ -52,30 +53,31 @@
                 opacity: .7;
             }
         </style>
-        <form class="pure-form pure-form-stacked" method="post" action="">
+        <form style="text-align: center" class="pure-form pure-form-stacked" method="post" action="/camagru/change">
              <fieldset class="pure-group">
             <input id="enteredLogin" name="login" class="pure-input-1" type="text" placeholder="Login">
             </fieldset>
             <button id="change_login" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить логин</button>
-            <p id="errorLogin" style="color: red"></p>
+            <p id="errorLogin" style="color: red; position: relative"></p>
             <fieldset class="pure-group">
                 <input id="enteredPass" name="pass" class="pure-input-1" type="password" placeholder="New Password">
                 <input id="enteredRepass" name="repass" class="pure-input-1" type="password" placeholder="Repeat new password">
             </fieldset>
             <button id="change_pass" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить пароль</button>
-            <p id="errorPass" style="color: red"></p>
+            <p id="errorPass" style="color: red; position: relative"></p>
             <fieldset class="pure-group">
                 <input id="enteredName" name="name" class="pure-input-1" type="text" placeholder="Name">
             </fieldset>
             <button id="change_name" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить имя</button>
-            <p id="errorName" style="color: red"></p>
+            <p id="errorName" style="color: red; position: relative"></p>
             <fieldset class="pure-group">
                 <input id="enteredMail" name="email" class="pure-input-1" type="text" placeholder="Email">
             </fieldset>
             <button id="change_mail" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить email</button>
-            <p id="errorMail" style="color: red"></p>
+            <p id="errorMail" style="color: red; position: relative"></p>
         </form>
     </div>
 </div>
 <script src="/js/matrixBackground.js"></script>
 <script src="/js/changeUserDataPage.js"></script>
+</body>

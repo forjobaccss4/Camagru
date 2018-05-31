@@ -38,7 +38,7 @@ body {
 }
 
 #signin:checked ~ #wrapper {
-    height: 178px;
+    height: 170px;
 }
 
 #signin:checked ~ #wrapper #arrow {

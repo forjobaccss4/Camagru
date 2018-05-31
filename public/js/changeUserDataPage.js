@@ -76,11 +76,11 @@ function testPasswords() {
     var rePass = document.getElementById('enteredRepass');
 
     if (pass.value == "") {
-        password = 'Пароль не может быть пустым';
+        returnElement('errorPass').innerHTML = 'Пароль не может быть пустым';
         return false;
     }
     if (rePass.value == "") {
-        password = 'Пароль не может быть пустым';
+        returnElement('errorPass').innerHTML = 'Пароль не может быть пустым';
         return false;
     }
     return true;
@@ -90,20 +90,19 @@ function comparePasswords() {
     var value = true;
     var pass = document.getElementById('enteredPass');
     var repass = document.getElementById('enteredRepass');
-    // alert(pass.value);
     if ((pass.value != "" && repass.value != "") && (pass.value != repass.value)) {
-        password = 'Пароли не совпадают';
+        returnElement('errorPass').innerHTML = 'Пароли не совпадают';
         value = false;
     }
     return value;
 }
 function testName(enteredName) {
     if (enteredName === undefined || enteredName === "") {
-        login = 'Имя не может быть пустым';
+        returnElement('errorName').innerHTML = 'Имя не может быть пустым';
         return false;
     }
     if (/^[a-za-zа-яA-ZФ-Я]+$/.test(enteredName) == false) {
-        login = 'В имени должны быть только буквы';
+        returnElement('errorName').innerHTML = 'В имени должны быть только буквы';
         return false;
     }
     return true;
@@ -116,12 +115,12 @@ function testMail() {
 
 
     if (!email_regexp.test(mail.value)) {
-        email = 'Неверный формат email';
+        returnElement('errorMail').innerHTML = 'Неверный формат email';
         value = false;
     }
 
     if (mail.value == "") {
-        email = 'Email не может быть пустым';
+        returnElement('errorMail').innerHTML = 'Email не может быть пустым';
         value = false;
     }
     return value;
