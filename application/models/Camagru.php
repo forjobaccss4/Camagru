@@ -22,39 +22,32 @@ class Camagru extends Model
         foreach ($allVariables as $key => $value) {
             $this->table = 'user';
             if ($key == "login" && !empty($value)) {
-                debug($this->findOne($value, "login"));
-                if (!$this->findOne($value, "login")) {
+//                debug(count($checkLogin = $this->findOne($value, "login")));
+                if (!count($checkLogin = $this->findOne($value, "login"))) {
                     $changeLogin = $this->findOne($this->login, "login");
-                    $this->login =  $_SESSION['login'] = $value; //меняется пользователь во время смены логина потмоу что я меняю логин в сессии
+                    $this->login = $_SESSION['login'] = $value; //меняется пользователь во время смены логина потмоу что я меняю логин в сессии
                     $this->updateOne($this->table, "login", "\"$value\"", "id", $changeLogin[0]['id']);
-                }else {
+                } else {
                     ErrorController::whooopsAction($this->route, "Такой логин уже занят!");
                 }
             }
             if (($key == "pass" || $key == "repass") && (!empty($value))) {
                 $this->changePassword($allVariables["pass"], $allVariables["repass"]);
             }
-//            if ($key == "pass") {
-//                echo $value;
-//            }
-//            if ($key == "login") {
-//                echo $value;
-//            }
-//            if ($key == "login") {
-//                echo $value;
-//            }
         }
-//        debug($allVariables);
     }
 
-    private function changePassword($pass, $repass) {
-        if (empty($pass) || empty(($repass))) {
-            ErrorController::whooopsAction($this->route, "Пароль не может быть пустой!");
-        }
-        if ($pass != $repass) {
-            ErrorController::whooopsAction($this->route, "Пароли не совпадают!");
-        }
+    private function changeLogin($pass, $repass) { //разделить проверки по разным методам
     }
+
+    function changePassword($pass, $repass) {
+            if (empty($pass) || empty(($repass))) {
+                ErrorController::whooopsAction($this->route, "Заполните все поля с паролем!");
+            }
+            if ($pass != $repass) {
+                ErrorController::whooopsAction($this->route, "Пароли не совпадают!");
+            }
+        }
 
     private function checkLoginRegular($login) {
         $len = strlen($login);
