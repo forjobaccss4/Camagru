@@ -1,4 +1,3 @@
-<body style="background-color: black">
 <head>
     <link rel="stylesheet" href="/css/styles.css">
     <link rel="stylesheet" href="https://unpkg.com/purecss@1.0.0/build/grids-responsive-min.css">
@@ -7,7 +6,6 @@
 </head>
 <div class="pure-g" style="display: flex; justify-content: center">
     <div class="pure-u" style="position: absolute">
-        <canvas id="matrix"></canvas>
     </div>
     <div class="pure-u">
         <div id="primary_nav_wrap" class="pure-menu pure-menu-horizontal">
@@ -25,5 +23,3 @@
         </div>
     </div>
 </div>
-<script src="../../../js/matrixBackground.js"></script>
-</body>
