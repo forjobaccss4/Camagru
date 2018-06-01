@@ -15,7 +15,7 @@ class CamagruController extends AppController {
         }
         if (isset($_SESSION['login'])) {
             $this->user = $_SESSION['login'];
-            $this->button = "<li style=\"float: right\"><a href=\"/camagru/logout\">Выход</a></li>";
+            $this->button = "<li style=\"float: right\"><a href=\"/camagru/logout\">Выйти</a></li>";
         }
     }
 
