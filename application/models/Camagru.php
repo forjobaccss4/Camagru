@@ -5,54 +5,76 @@ namespace application\models;
 use application\core\base\Model;
 use application\controllers\ErrorController;
 
-class Camagru extends Model
-{
+class Camagru extends Model {
     private $login;
+    private $postArray = [];
     private $route = ['controller' => 'Error', 'action' => 'whooops'];
+    public $message = '';
 
-    public function __construct() {
+    public function __construct($allVariables) {
         parent::__construct();
-        $this->login = $_SESSION['login'];
-    }
-
-    public function changePersonalData($allVariables) {
-        if (!count($allVariables)) {
+        if ($_SESSION['login'] && !count($allVariables)) {
+            ErrorController::whooopsAction($this->route, "Вы отправили пустой запрос!");
+        }
+        if (!$_SESSION['login']) {
             ErrorController::errorPage();
         }
-        foreach ($allVariables as $key => $value) {
-            $this->table = 'user';
-            if ($key == "login" && !empty($value)) {
-//                debug(count($checkLogin = $this->findOne($value, "login")));
-                if (!count($checkLogin = $this->findOne($value, "login"))) {
-                    $changeLogin = $this->findOne($this->login, "login");
-                    $this->login = $_SESSION['login'] = $value; //меняется пользователь во время смены логина потмоу что я меняю логин в сессии
-                    $this->updateOne($this->table, "login", "\"$value\"", "id", $changeLogin[0]['id']);
-                } else {
-                    ErrorController::whooopsAction($this->route, "Такой логин уже занят!");
-                }
+        $this->login = $_SESSION['login'];
+        $this->postArray = $allVariables;
+        $this->table = 'user';
+    }
+
+    public function changeLogin(){
+        $tmp = $this->postArray['login'];
+        if (!count($checkLogin = $this->findOne($this->postArray['login'], "login"))) {
+            if ($trueFalse = $this->checkLoginRegular($this->postArray['login'])) {
+                $changeLogin = $this->findOne($this->login, "login");
+                $this->login = $_SESSION['login'] = $this->postArray['login'];
+                $this->updateOne($this->table, "login", "\"$tmp\"", "id", $changeLogin[0]['id']);
+            }else {
+                ErrorController::whooopsAction($this->route, $this->message);
             }
-            if (($key == "pass" || $key == "repass") && (!empty($value))) {
-                $this->changePassword($allVariables["pass"], $allVariables["repass"]);
-            }
+
+        }else {
+            ErrorController::whooopsAction($this->route, "Такой логин уже занят!");
         }
     }
 
-    private function changeLogin($pass, $repass) { //разделить проверки по разным методам
+    function changePassword() {
+        if ($this->postArray['pass'] == "" || $this->postArray['repass'] == "") {
+            ErrorController::whooopsAction($this->route, "Должны быть заполнены оба поля с паролем!");
+            exit;
+        }
+        $pass = crypt(trim(htmlspecialchars(stripslashes($this->postArray['pass']))), "ZqbHp9lb");
+        $repass = crypt(trim(htmlspecialchars(stripslashes($this->postArray['repass']))), "ZqbHp9lb");
+        if (!hash_equals($pass, $repass)) {
+            ErrorController::whooopsAction($this->route, "Пароли не совпадают!");
+            exit;
+        }
+        if (!preg_match("/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $this->postArray['pass'])) {
+            $this->message = "Пароль должен состоять минимум" . "<br>" . " из 8 символов, одной цифры, одной буквы" . "<br>" . "в верхнем регистре и одной в нижнем";
+            ErrorController::whooopsAction($this->route,  $this->message);
+            exit;
+        }
+        $checkPassword = $this->findOne($_SESSION['login'], "login");
+        $this->updateOne($this->table, "password", "\"$pass\"", "id", $checkPassword[0]['id']);
     }
 
-    function changePassword($pass, $repass) {
-            if (empty($pass) || empty(($repass))) {
-                ErrorController::whooopsAction($this->route, "Заполните все поля с паролем!");
-            }
-            if ($pass != $repass) {
-                ErrorController::whooopsAction($this->route, "Пароли не совпадают!");
-            }
+    public function changeName() {
+        if ($this->postArray['name'] == "") {
+            ErrorController::whooopsAction($this->route, "Имя не может быть пустым!");
+            exit;
         }
+        $name = trim(htmlspecialchars(stripslashes($this->postArray['name'])));
+        $checkName = $this->findOne($_SESSION['login'], "login");
+        $this->updateOne($this->table, "name", "\"$name\"", "id", $checkName[0]['id']);
+    }
+    public function changeMail() {
 
-    private function checkLoginRegular($login) {
+    }
+
+    public function checkLoginRegular($login) {
         $len = strlen($login);
-
-
         if (empty($login)) {
             $this->loginMessage = 'Логин не может быть пустым';
             return false;

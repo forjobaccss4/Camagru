@@ -14,19 +14,15 @@ class CamagruController extends AppController {
             ErrorController::errorPage();
         }
         if (isset($_SESSION['login'])) {
-            $model = new Camagru($_SESSION['login']);
-            $this->user = $_SESSION['login']; //здесь нужно вывести логин пользователя
-        }
-    }
-
-    public function indexAction() {
-        if (isset($_SESSION['login'])) {
+            $this->user = $_SESSION['login'];
             $this->button = "<li style=\"float: right\"><a href=\"/camagru/logout\">Выход</a></li>";
         }
     }
 
+    public function indexAction() {
+    }
+
     public function logoutAction() {
-        session_start();
         if (isset($_SESSION['login'])) {
             unset($_SESSION['login']);
             header('Location: /authorization');
@@ -39,10 +35,22 @@ class CamagruController extends AppController {
 
     }
 
-    public function changeAction() {
-        $model = new Camagru();
-        $model->changePersonalData($_POST);
+    public function loginAction() {
+        $model = new Camagru($_POST);
+        $model->changeLogin();
 
+    }
+    public function passwordAction() {
+        $model = new Camagru($_POST);
+        $model->changePassword();
+    }
+    public function nameAction() {
+        $model = new Camagru($_POST);
+        $model->changeName();
+    }
+    public function mailAction() {
+        $model = new Camagru($_POST);
+        $model->changeMail();
     }
 }
 ?>

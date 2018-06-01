@@ -83,6 +83,10 @@ function testPasswords() {
         returnElement('errorPass').innerHTML = 'Пароль не может быть пустым';
         return false;
     }
+    if (pass.value.length < 8) {
+        returnElement('errorPass').innerHTML = 'Пароль должен состоять минимум из 8 символов';
+        return false;
+    }
     return true;
 }
 

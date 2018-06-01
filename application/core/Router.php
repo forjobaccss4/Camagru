@@ -41,13 +41,13 @@ class Router {
                     $cObj->$action();
                     $cObj->getView();
                 }else {
-                    ErrorController::errorPage(self::$route);
+                    ErrorController::errorPage();
                 }
             }else {
-                ErrorController::errorPage(self::$route);
+                ErrorController::errorPage();
             }
         }else {
-            ErrorController::errorPage(self::$route);
+            ErrorController::errorPage();
         }
     }
 }

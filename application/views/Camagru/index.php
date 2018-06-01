@@ -15,7 +15,8 @@
                 <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                     <a href="#" id="menuLink1" class="pure-menu-link"><?=$user?></a>
                     <ul class="pure-menu-children">
-                        <li class="pure-menu-item"><a href="/authorization/" class="pure-menu-link">Главная</a></li>
+                        <li class="pure-menu-item"><a href="/camagru" class="pure-menu-link">Главная</a></li>
+                        <li class="pure-menu-item"><a href="/authorization" class="pure-menu-link">Регистрация</a></li>
                         <li class="pure-menu-item"><a href="/camagru/cabinet" class="pure-menu-link">Личный кабинет</a></li>
                     </ul>
                 </li>

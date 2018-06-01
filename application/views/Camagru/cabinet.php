@@ -16,7 +16,8 @@
             <li class="pure-menu-item pure-menu-has-children pure-menu-allow-hover">
                 <a href="#" id="menuLink1" class="pure-menu-link"><?=$user?></a>
                 <ul class="pure-menu-children">
-                    <li class="pure-menu-item"><a href="/authorization" class="pure-menu-link">Главная</a></li>
+                    <li class="pure-menu-item"><a href="/camagru" class="pure-menu-link">Главная</a></li>
+                    <li class="pure-menu-item"><a href="/authorization" class="pure-menu-link">Регистрация</a></li>
                     <li class="pure-menu-item"><a href="#" class="pure-menu-link">Личный кабинет</a></li>
                 </ul>
             </li>
@@ -53,23 +54,29 @@
                 opacity: .7;
             }
         </style>
-        <form style="text-align: center" class="pure-form pure-form-stacked" method="post" action="/camagru/change">
+        <form style="text-align: center" class="pure-form pure-form-stacked" method="post" action="/camagru/login">
              <fieldset class="pure-group">
             <input id="enteredLogin" name="login" class="pure-input-1" type="text" placeholder="Login">
             </fieldset>
             <button id="change_login" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить логин</button>
             <p id="errorLogin" style="color: red; position: relative"></p>
+        </form>
+        <form style="text-align: center" class="pure-form pure-form-stacked" method="post" action="/camagru/password">
             <fieldset class="pure-group">
                 <input id="enteredPass" name="pass" class="pure-input-1" type="password" placeholder="New Password">
                 <input id="enteredRepass" name="repass" class="pure-input-1" type="password" placeholder="Repeat new password">
             </fieldset>
             <button id="change_pass" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить пароль</button>
             <p id="errorPass" style="color: red; position: relative"></p>
+        </form>
+        <form style="text-align: center" class="pure-form pure-form-stacked" method="post" action="/camagru/name">
             <fieldset class="pure-group">
                 <input id="enteredName" name="name" class="pure-input-1" type="text" placeholder="Name">
             </fieldset>
             <button id="change_name" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить имя</button>
             <p id="errorName" style="color: red; position: relative"></p>
+        </form>
+        <form style="text-align: center" class="pure-form pure-form-stacked" method="post" action="/camagru/mail">
             <fieldset class="pure-group">
                 <input id="enteredMail" name="email" class="pure-input-1" type="text" placeholder="Email">
             </fieldset>
