@@ -1,3 +1,4 @@
+<body style="background-color: black">
 <head>
     <link rel="stylesheet" href="../../../css/styles.css">
     <link rel="stylesheet" href="../../../css/menu.css">
@@ -8,3 +9,4 @@
 <div id="error" class="error">PAGE NOT FOUND</div>
 <script src="../../../js/errorPage.js"></script>
 </div>
+</body>

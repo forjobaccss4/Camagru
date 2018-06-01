@@ -31,10 +31,10 @@ class Camagru extends Model {
                 $changeLogin = $this->findOne($this->login, "login");
                 $this->login = $_SESSION['login'] = $this->postArray['login'];
                 $this->updateOne($this->table, "login", "\"$tmp\"", "id", $changeLogin[0]['id']);
+                header('Location: /camagru/cabinet');
             }else {
                 ErrorController::whooopsAction($this->route, $this->message);
             }
-
         }else {
             ErrorController::whooopsAction($this->route, "Такой логин уже занят!");
         }
@@ -56,8 +56,9 @@ class Camagru extends Model {
             ErrorController::whooopsAction($this->route,  $this->message);
             exit;
         }
-        $checkPassword = $this->findOne($_SESSION['login'], "login");
+        $checkPassword = $this->findOne($this->login, "login");
         $this->updateOne($this->table, "password", "\"$pass\"", "id", $checkPassword[0]['id']);
+        header('Location: /camagru/cabinet');
     }
 
     public function changeName() {
@@ -66,11 +67,28 @@ class Camagru extends Model {
             exit;
         }
         $name = trim(htmlspecialchars(stripslashes($this->postArray['name'])));
-        $checkName = $this->findOne($_SESSION['login'], "login");
+        $checkName = $this->findOne($this->login, "login");
         $this->updateOne($this->table, "name", "\"$name\"", "id", $checkName[0]['id']);
+        header('Location: /camagru/cabinet');
     }
     public function changeMail() {
-
+        if ($this->postArray['email'] == "") {
+            ErrorController::whooopsAction($this->route, "Поле Email не должно быть пустым!");
+            exit;
+        }
+        if (filter_var($this->postArray['email'], FILTER_VALIDATE_EMAIL)) {
+            $checkMail = $this->findOne($this->login, "login");
+            $mail = $this->postArray['email'];
+            if (!$this->findOne($mail, "email")) {
+                $this->updateOne($this->table, "email", "\"$mail\"", "id", $checkMail[0]['id']);
+                header('Location: /camagru/cabinet');
+            }else {
+                ErrorController::whooopsAction($this->route, "Такой Email уже занят!");
+                exit;
+            }
+        }else {
+            ErrorController::whooopsAction($this->route, "Неверный формат Email!");
+        }
     }
 
     public function checkLoginRegular($login) {

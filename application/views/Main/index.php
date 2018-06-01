@@ -1,3 +1,4 @@
+<body style="background-color: black">
 <head>
     <link rel="stylesheet" href="../../../css/styles.css">
     <link rel="stylesheet" href="../../../css/menu.css">
@@ -17,3 +18,4 @@
     <div id="error" class="error">ERROR</div>
 </div>
 <script src="../../../js/matrixBackground.js"></script>
+</body>

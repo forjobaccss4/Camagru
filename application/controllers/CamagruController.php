@@ -26,7 +26,7 @@ class CamagruController extends AppController {
         if (isset($_SESSION['login'])) {
             unset($_SESSION['login']);
             header('Location: /authorization');
-        } else {
+        }else {
             ErrorController::errorPage();
         }
     }

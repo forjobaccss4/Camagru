@@ -1,3 +1,4 @@
+<body style="background-color: black">
 <head>
     <link rel="stylesheet" href="../../../css/styles.css">
     <link rel="stylesheet" href="../../../css/menu.css">
@@ -44,3 +45,4 @@
 </div>
 <script src="../../../js/matrixBackground.js"></script>
 <script src="../../../js/checkUser.js"></script>
+</body>
