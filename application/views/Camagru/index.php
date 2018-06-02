@@ -18,6 +18,11 @@
                         </li>
                     </ul>
     </div>
+    <div class="row">
+        <div class="col s4 m12 red lighten-2">123</div>
+        <div class="col s4 m12 red lighten-3">123</div>
+        <div class="col s4 m12 red lighten-4">123</div>
+    </div>
     </div>
 </nav>
 </div>
