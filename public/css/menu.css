@@ -1,4 +1,4 @@
-#primary_nav_wrap ul {
+#primary_nav_wrap img ul{
     left: 0;
     top: 0;
     list-style:none;
@@ -96,7 +96,7 @@
 
 }
 
-#primary_nav_wrap a {
+#primary_nav_wrap li a {
     text-align: center;
     display: block;
     color: #9C9C9C;
@@ -113,6 +113,68 @@
     -o-transition: all 150ms linear;
     transition: all 150ms linear;
 }
+#primary_nav_wrap li a:hover {
+    color: white;
+    background-color: #2d2f33;
+    text-shadow: 0 0 2px white;
+    -webkit-text-shadow: 0 0 2px white;
+    -moz-text-shadow: 0 0 2px white;
+    -o-text-shadow: 0 0 2px white;
+    -ms-text-shadow: 0 0 2px white;
+    -webkit-transition: all 150ms linear;
+    -moz-transition: all 150ms linear;
+    -ms-transition: all 150ms linear;
+    -o-transition: all 150ms linear;
+    transition: all 150ms linear;
+}
 #primary_nav_wrap {
     list-style:none;
+}
+
+
+.leftbar {
+    position: absolute;
+    height: 100%;
+    width: 0;
+
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.leftbar a {
+    position: absolute;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
+}
+
+.leftbar a:hover {
+    color: #f1f1f1;
+}
+
+.leftbar .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+#main {
+    position: relative;
+    transition: margin-left .3s;
+    padding: 16px;
+}
+
+@media screen and (max-height: 450px) {
+    .leftbar {padding-top: 15px;}
+    .leftbar a {font-size: 18px;}
 }
