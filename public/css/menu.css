@@ -131,12 +131,13 @@
     list-style:none;
 }
 
-
 .leftbar {
     position: absolute;
+    display: flex;
+    justify-content: center;
+    text-align: center;
     height: 100%;
     width: 0;
-
     z-index: 1;
     top: 0;
     left: 0;
@@ -159,12 +160,11 @@
 .leftbar a:hover {
     color: #f1f1f1;
 }
-
 .leftbar .closebtn {
     position: absolute;
     top: 0;
     right: 25px;
-    font-size: 36px;
+    font-size: 12px;
     margin-left: 50px;
 }
 
