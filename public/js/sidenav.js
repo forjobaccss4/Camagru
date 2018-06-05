@@ -13,3 +13,7 @@ window.onresize = function() {
         document.getElementById("main").style.marginLeft= "auto";
     }
 }
+
+function submit() {
+    document.getElementById('download').submit;
+}

@@ -52,5 +52,10 @@ class CamagruController extends AppController {
         $model = new Camagru($_POST);
         $model->changeMail();
     }
+
+    public function imageAction() {
+        $model = new Camagru($_POST);
+        $model->makeImage($_POST['image']);
+    }
 }
 ?>

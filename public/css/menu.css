@@ -131,6 +131,15 @@
     list-style:none;
 }
 
+.image-upload form > input {
+    display: none;
+}
+
+.image-upload form img {
+    width: 80px;
+    cursor: pointer;
+}
+
 .leftbar {
     position: absolute;
     display: flex;

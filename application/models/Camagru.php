@@ -114,4 +114,28 @@ class Camagru extends Model {
         }
         return true;
     }
+
+    public function makeImage($imageBaseCode){
+        $path = dirname(__FILE__);
+        $imgBig = $imageBaseCode;
+        echo "POST = " . $_POST['image'];
+        $output_file = "lol.png";
+        $base64_string = $imgBig;
+        $ifp = fopen($output_file, 'wb');
+        $data = explode( ',', $base64_string );
+        fwrite( $ifp, base64_decode( $data[ 1 ] ) );
+        fclose( $ifp );
+        $imgSmall = 'unitlogo.png';
+        $img1 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $output_file);
+        $img2 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $imgSmall);
+        if($img1 and $img2) {
+            $x2 = imagesx($img2);
+            $y2 = imagesy($img2);
+            imagecopyresampled($img1, $img2, 20, 20, 0, 0, $x2, $y2, $x2, $y2);
+            header('Content-type: image/jpeg');
+            imagejpeg($img1, null, 100);
+        } else {
+            header('HTTP/1.1 404 Not Found');
+        }
+    }
 }

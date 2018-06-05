@@ -32,10 +32,21 @@
         </div>
     </nav>
 </div>
+<br><br><br><br>
 <div class="container hide-on-med-and-up">
     <div class="row">
         <div class="col s12">
             <img src="/png/camera.png" style="width: 70px; cursor:pointer;" onclick="camera()">
+        </div>
+    </div>
+    <div class="row" style="position: relative">
+        <div class="image-upload">
+            <form id="download" enctype="multipart/form-data" method="post" action="/camagru/image">// Я ничего не отправляю в запросе, нет кнопки submit
+                <label for="file-input">
+                    <img src="/png/folder.png">
+                </label>
+                <input id="file-input" type="file" accept="image/*,image/jpeg,image/png,image/jpg" onchange="submit()">
+            </form>
         </div>
     </div>
 </div>
@@ -44,8 +55,10 @@
     <div class="row">
         <div class="col s12 grey darken-4">
             <video></video>
+            <canvas id="example" width=320 height=250></canvas>
+            <button id="snapshot" type="submit">click me</button>
         </div>
-    </div>
+</div>
 </div>
 <div id="mySidenav" class="leftbar hide-on-small-only">
     <a href= "javascript:void(0)" class="closebtn" onclick="closeNav()">Close</a>
@@ -55,10 +68,12 @@
         </div>
     </div>
     <div class="row" style="position: relative">
-        <div class="col s12 #2d2f33">
-            <form enctype="multipart/form-data" method="post">
-<!--                <input type="file" name="photo" multiple accept="image/*,image/jpeg,image/png,image/jpg">-->
-                <input type="image" src="/png/folder.png" style="width: 70px; cursor:pointer;">
+        <div class="image-upload">
+            <form id="download" enctype="multipart/form-data" method="post" action="/camagru/image">// Я ничего не отправляю в запросе, нет кнопки submit
+                <label for="file-input">
+                    <img src="/png/folder.png">
+                </label>
+                <input id="file-input" name="image" type="file" accept="image/*,image/jpeg,image/png,image/jpg" onchange="submit()">
             </form>
         </div>
     </div>
@@ -66,9 +81,5 @@
 <script src="/js/matrixBackground.js"></script>
 <script src="/js/sidenav.js"></script>
 <script src="/js/camera.js"></script>
-<form enctype="multipart/form-data" method="post">
-    <p>Загрузите ваши фотографии на сервер</p>
-    <p><input type="file" name="photo" multiple accept="image/*,image/jpeg">
-        <input type="submit" value="Отправить"></p>
-</form>
+<script src="/js/snapshot.js"></script>
 </body>
