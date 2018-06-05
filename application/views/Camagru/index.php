@@ -21,9 +21,9 @@
                         <li>
                             <a href="#" id="" class=""><?=$user?></a>
                             <ul class="left">
-                                <li class=""><a href="/camagru" class="">Главная</a></li>
-                                <li class=""><a href="/authorization" class="">Регистрация</a></li>
-                                <li class=""><a href="/camagru/cabinet" class="">Личный кабинет</a></li>
+                                <li><a href="/camagru">Главная</a></li>
+                                <li><a href="/authorization">Регистрация</a></li>
+                                <li><a href="/camagru/cabinet">Личный кабинет</a></li>
                             </ul>
                         </li>
                     </ul>
@@ -31,6 +31,13 @@
             </div>
         </div>
     </nav>
+</div>
+<div class="container hide-on-med-and-up">
+    <div class="row">
+        <div class="col s12">
+            <img src="/png/camera.png" style="width: 70px; cursor:pointer;" onclick="camera()">
+        </div>
+    </div>
 </div>
 <br><br><br><br>
 <div class="container">
@@ -43,12 +50,25 @@
 <div id="mySidenav" class="leftbar hide-on-small-only">
     <a href= "javascript:void(0)" class="closebtn" onclick="closeNav()">Close</a>
     <div class="row" style="position: relative">
-        <div class="col s12 #2d2f33">
+        <div class="col s12 #2d2f33" style="padding-top: 25px">
             <img src="/png/camera.png" style="width: 70px; cursor:pointer;" onclick="camera()">
+        </div>
+    </div>
+    <div class="row" style="position: relative">
+        <div class="col s12 #2d2f33">
+            <form enctype="multipart/form-data" method="post">
+<!--                <input type="file" name="photo" multiple accept="image/*,image/jpeg,image/png,image/jpg">-->
+                <input type="image" src="/png/folder.png" style="width: 70px; cursor:pointer;">
+            </form>
         </div>
     </div>
 </div>
 <script src="/js/matrixBackground.js"></script>
 <script src="/js/sidenav.js"></script>
 <script src="/js/camera.js"></script>
+<form enctype="multipart/form-data" method="post">
+    <p>Загрузите ваши фотографии на сервер</p>
+    <p><input type="file" name="photo" multiple accept="image/*,image/jpeg">
+        <input type="submit" value="Отправить"></p>
+</form>
 </body>

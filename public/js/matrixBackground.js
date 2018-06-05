@@ -1,7 +1,7 @@
 var matrix = document.getElementById("matrix");
 var context = matrix.getContext("2d");
-matrix.height = window.innerHeight;
-matrix.width = window.innerWidth;
+matrix.height = document.documentElement.clientHeight;
+matrix.width = document.documentElement.clientWidth;
 var drop = [];
 var font_size = 20;
 var columns = matrix.width / font_size;
@@ -95,5 +95,5 @@ function drawMatrix() {
     }
 }
 
-var greenMatrix = setInterval(drawMatrix, 40);
+setInterval(drawMatrix, 40);
 setTimeout(draw, 1000);
