@@ -50,7 +50,7 @@ function camera() {
     choose.style.width = "320px";
     choose.style.height = "250px";
     choose.style.position = "relative";
-    choose.style.backgroundColor = "white";
+    choose.style.backgroundColor = "transparent";
     variants.appendChild(choose);
 
 }

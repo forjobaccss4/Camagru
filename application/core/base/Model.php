@@ -38,6 +38,11 @@ abstract class Model {
         $sql = "INSERT INTO {$this->table} (login, password, email, name, hash) VALUES (?,?,?,?,?)";
         $this->pdo->execute($sql, $params);
     }
+    public function insertOne($fileName) {
+        $this->table = "images";
+        $sql = "INSERT INTO {$this->table} (src) VALUES (?)";
+        $this->pdo->execute($sql, $fileName);
+    }
     public function updateOne($table, $change, $data, $row, $hash) {
         $sql = "UPDATE {$table} SET $change = $data WHERE $row = $hash";
         return $this->pdo->execute($sql);

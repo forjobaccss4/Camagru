@@ -14,11 +14,12 @@ class Camagru extends Model {
     public function __construct($allVariables) {
         parent::__construct();
         if ($_SESSION['login'] && !count($allVariables)) {
-//            ErrorController::whooopsAction($this->route, "Вы отправили пустой запрос!");
-            debug($allVariables);
+            ErrorController::whooopsAction($this->route, "Вы отправили пустой запрос!");
+            exit;
         }
         if (!$_SESSION['login']) {
             ErrorController::errorPage();
+            exit;
         }
         $this->login = $_SESSION['login'];
         $this->postArray = $allVariables;
@@ -114,27 +115,5 @@ class Camagru extends Model {
             }
         }
         return true;
-    }
-
-    public function makeImage($imageBaseCode){
-        $path = ROOT . "/public/png";
-        $outputFile = md5(uniqid(rand(),1)) . ".png";
-        $ifp = fopen($path . "/" . $outputFile, 'wb');
-        $data = explode( ',', $imageBaseCode );
-        debug($outputFile);
-        fwrite($ifp, base64_decode($data[1]));
-        fclose($ifp);
-        $imgSmall = 'unitlogo.png';
-        $img1 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $outputFile);
-        $img2 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $imgSmall);
-        if($img1 && $img2) {
-            $x2 = imagesx($img2);
-            $y2 = imagesy($img2);
-            imagecopyresampled($img1, $img2, 20, 20, 0, 0, $x2, $y2, $x2, $y2);
-            imagepng($img1, $path . "/" . $outputFile, 9);
-            //unlink('lol.png'); DELETE FILE
-        } else {
-            ErrorController::errorPage();
-        }
     }
 }

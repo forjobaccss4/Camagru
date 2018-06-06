@@ -3,7 +3,7 @@
 namespace application\controllers;
 
 use application\models\Camagru;
-use application\models\Login;
+use application\models\Other;
 
 class CamagruController extends AppController {
 
@@ -15,11 +15,13 @@ class CamagruController extends AppController {
         }
         if (isset($_SESSION['login'])) {
             $this->user = $_SESSION['login'];
-            $this->button = "<li><a href=\"/camagru/logout\" class=\"right\">Выйти</a></li>";
+            $this->button = "<li><a href=\"/camagru/logout\">Выйти</a></li>";
         }
     }
 
     public function indexAction() {
+        $model = new Other();
+        $this->message = $model->showAllPhoto();
     }
 
     public function logoutAction() {
@@ -54,7 +56,7 @@ class CamagruController extends AppController {
     }
 
     public function imageAction() {
-        $model = new Camagru($_POST);
+        $model = new Other();
         $model->makeImage($_POST['baseImage']);
     }
 }

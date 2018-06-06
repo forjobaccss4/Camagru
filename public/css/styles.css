@@ -15,6 +15,13 @@ video {
     justify-content: center;
     align-items: center;
 }
+.container_tmp {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
 .connectionPopup {
     position: absolute;
     display: none;

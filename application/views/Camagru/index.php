@@ -7,21 +7,21 @@
 <canvas id="matrix" style="position: absolute"></canvas>
 <div id="main" class="container">
     <div class="row">
-        <span class="hide-on-small-only left" style="font-size:30px;cursor:pointer; color: #9C9C9C;" onclick="openNav()">&#9776</span>
+        <img class="hide-on-small-only left" style="width: 40px;cursor:pointer;" src="/png/camera.png" onclick="openNav()">
     </div>
     <nav class="black">
         <div id="primary_nav_wrap" class="nav-wrapper black center-align">
             <div class="row">
-                <div class="col s12">
-                    <?=$logout?>
+                <div class="col s12 offset-s3 m12 l12">
                     <ul>
-                        <img class="hide-on-small-only" src="/gif/TheMatrixAnimated.gif" style="width: 210px">
+                        <img class="hide-on-med-and-down" src="/gif/TheMatrixAnimated.gif" style="width: 210px">
                         <li>
-                            <a href="#" id="" class=""><?=$user?></a>
+                            <a href="#" id="" class="col s12"><?=$user?></a>
                             <ul class="left">
                                 <li><a href="/camagru">Главная</a></li>
                                 <li><a href="/authorization">Регистрация</a></li>
                                 <li><a href="/camagru/cabinet">Личный кабинет</a></li>
+                                <?=$logout?>
                             </ul>
                         </li>
                     </ul>
@@ -51,7 +51,9 @@
 <br><br><br><br>
 <div class="container">
     <div class="col s12 m8 offset-m2 l6 offset-l3 grey darken-4">
-        <div id="chooseFrame"></div>
+<!--        <div id="chooseFrame">-->
+            <img id="chooseFrame" style="width: 320px;height: 250px" src="/png/matrixheroes.png">
+<!--        </div>-->
     </div>
 </div>
 <div class="container">
@@ -68,6 +70,13 @@
             </form>
         </div>
 </div>
+</div>
+<div class="container_tmp">
+    <div class="row center-align">
+        <div class="col s12 grey center-align darken-4">
+            <?=$message?>
+        </div>
+    </div>
 </div>
 <div id="mySidenav" class="leftbar hide-on-small-only">
     <a href= "javascript:void(0)" class="closebtn" onclick="closeNav()">Close</a>
