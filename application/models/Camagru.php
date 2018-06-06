@@ -118,11 +118,9 @@ class Camagru extends Model {
 
     public function makeImage($imageBaseCode){
         $path = ROOT . "/public/png";
-        $imgBig = $imageBaseCode;
         $outputFile = "lol.png";
-        $base64_string = $imgBig;
         $ifp = fopen($outputFile, 'wb');
-        $data = explode( ',', $base64_string );
+        $data = explode( ',', $imageBaseCode );
         fwrite($ifp, base64_decode($data[1]));
         fclose($ifp);
         $imgSmall = 'unitlogo.png';
@@ -133,6 +131,7 @@ class Camagru extends Model {
             $y2 = imagesy($img2);
             imagecopyresampled($img1, $img2, 20, 20, 0, 0, $x2, $y2, $x2, $y2);
             imagepng($img1, "lol.png", 9);
+           // unlink('lol.png'); Удаление файла
         } else {
             header('HTTP/1.1 404 Not Found');
         }

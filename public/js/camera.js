@@ -39,7 +39,6 @@ function camera() {
     layout.style.height = "250px";
     layout.style.position = "absolute";
     layout.style.backgroundColor = "transparent";
-    layout.innerHTML = "Hello"; ///Это надо будет убрать
     frame.appendChild(layout);
 
     var variants = document.getElementById('chooseFrame');
@@ -52,7 +51,6 @@ function camera() {
     choose.style.height = "250px";
     choose.style.position = "relative";
     choose.style.backgroundColor = "white";
-    choose.innerHTML = "Hello"; ///Это надо будет убрать
     variants.appendChild(choose);
 
 }

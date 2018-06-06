@@ -4,6 +4,5 @@ document.getElementById('snapshot').onclick = function() {
     canvas.height = 250;
     var context = canvas.getContext('2d');
     context.drawImage(video, 0, 0, 320, 245);
-    var imageDataURL = canvas.toDataURL('image/png');
-    document.getElementById("hiddenInput").value = imageDataURL;
+    document.getElementById("hiddenInput").value = canvas.toDataURL('image/png');
 }
