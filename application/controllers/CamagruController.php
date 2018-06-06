@@ -55,7 +55,7 @@ class CamagruController extends AppController {
 
     public function imageAction() {
         $model = new Camagru($_POST);
-        $model->makeImage($_POST['image']);
+        $model->makeImage($_POST['baseImage']);
     }
 }
 ?>

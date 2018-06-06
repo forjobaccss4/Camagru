@@ -7,11 +7,9 @@
 <canvas id="matrix" style="position: absolute"></canvas>
 <div id="main" class="container">
     <div class="row">
-        <div class="col s12">
-            <span class="hide-on-small-only" style="font-size:30px;cursor:pointer; color: #9C9C9C;" onclick="openNav()">&#9776</span>
-        </div>
+        <span class="hide-on-small-only left" style="font-size:30px;cursor:pointer; color: #9C9C9C;" onclick="openNav()">&#9776</span>
     </div>
-    <nav>
+    <nav class="black">
         <div id="primary_nav_wrap" class="nav-wrapper black center-align">
             <div class="row">
                 <div class="col s12">
@@ -41,7 +39,7 @@
     </div>
     <div class="row" style="position: relative">
         <div class="image-upload">
-            <form id="download" enctype="multipart/form-data" method="post" action="/camagru/image">// Я ничего не отправляю в запросе, нет кнопки submit
+            <form id="download" enctype="multipart/form-data" method="post" action="/camagru/image">
                 <label for="file-input">
                     <img src="/png/folder.png">
                 </label>
@@ -52,11 +50,22 @@
 </div>
 <br><br><br><br>
 <div class="container">
-    <div class="row">
-        <div class="col s12 grey darken-4">
+    <div class="col s12 m8 offset-m2 l6 offset-l3 grey darken-4">
+        <div id="chooseFrame"></div>
+    </div>
+</div>
+<div class="container">
+    <div class="row center-align">
+        <div class="col s12 m8 offset-m2 l6 offset-l3">
+            <div id="createFrame"></div>
             <video></video>
-            <canvas id="example" width=320 height=250></canvas>
-            <button id="snapshot" type="submit">click me</button>
+            <canvas id="example" width=320 height=0></canvas>
+        </div>
+        <div id="button" class="hide">
+            <form  method="post" action="/camagru/image">
+                <input id="hiddenInput" name="baseImage" class="hide">
+                <button id="snapshot" class="btn waves-effect waves-light" type="submit">make photo</button>
+            </form>
         </div>
 </div>
 </div>
@@ -69,7 +78,7 @@
     </div>
     <div class="row" style="position: relative">
         <div class="image-upload">
-            <form id="download" enctype="multipart/form-data" method="post" action="/camagru/image">// Я ничего не отправляю в запросе, нет кнопки submit
+            <form id="download" enctype="multipart/form-data" method="post" action="/camagru/image">
                 <label for="file-input">
                     <img src="/png/folder.png">
                 </label>

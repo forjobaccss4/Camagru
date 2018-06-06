@@ -14,7 +14,8 @@ class Camagru extends Model {
     public function __construct($allVariables) {
         parent::__construct();
         if ($_SESSION['login'] && !count($allVariables)) {
-            ErrorController::whooopsAction($this->route, "Вы отправили пустой запрос!");
+//            ErrorController::whooopsAction($this->route, "Вы отправили пустой запрос!");
+            debug($allVariables);
         }
         if (!$_SESSION['login']) {
             ErrorController::errorPage();
@@ -116,24 +117,22 @@ class Camagru extends Model {
     }
 
     public function makeImage($imageBaseCode){
-        $path = dirname(__FILE__);
+        $path = ROOT . "/public/png";
         $imgBig = $imageBaseCode;
-        echo "POST = " . $_POST['image'];
-        $output_file = "lol.png";
+        $outputFile = "lol.png";
         $base64_string = $imgBig;
-        $ifp = fopen($output_file, 'wb');
+        $ifp = fopen($outputFile, 'wb');
         $data = explode( ',', $base64_string );
-        fwrite( $ifp, base64_decode( $data[ 1 ] ) );
-        fclose( $ifp );
+        fwrite($ifp, base64_decode($data[1]));
+        fclose($ifp);
         $imgSmall = 'unitlogo.png';
-        $img1 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $output_file);
+        $img1 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $outputFile);
         $img2 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $imgSmall);
         if($img1 and $img2) {
             $x2 = imagesx($img2);
             $y2 = imagesy($img2);
             imagecopyresampled($img1, $img2, 20, 20, 0, 0, $x2, $y2, $x2, $y2);
-            header('Content-type: image/jpeg');
-            imagejpeg($img1, null, 100);
+            imagepng($img1, "lol.png", 9);
         } else {
             header('HTTP/1.1 404 Not Found');
         }
