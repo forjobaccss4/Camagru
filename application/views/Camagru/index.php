@@ -48,14 +48,13 @@
         </div>
     </div>
 </div>
-<br><br><br><br>
-<div class="container_tmp">
+<div id="needShow1" class="container_tmp hide">
     <div class="row center-align">
         <div id="chooseFrame" class="col s12 black center-align">
         </div>
     </div>
 </div>
-<div class="container">
+<div id="needShow2" class="container hide">
     <div class="row center-align">
         <div class="col s12 m8 offset-m2 l6 offset-l3">
             <img id="createFrame">
@@ -68,15 +67,16 @@
                 <button id="snapshot" class="btn waves-light" type="submit">make photo</button>
             </form>
         </div>
-</div>
+    </div>
 </div>
 <div class="container_tmp">
     <div class="row center-align">
-        <div class="col s12 center-align black">
+        <div class="col s12 grey darken-4">
             <?=$message?>
         </div>
     </div>
 </div>
+
 <div id="mySidenav" class="leftbar hide-on-small-only">
     <a href= "javascript:void(0)" class="closebtn" onclick="closeNav()">Close</a>
     <div class="row" style="position: relative">
@@ -94,10 +94,6 @@
             </form>
         </div>
     </div>
-</div>
-<div id="footer">
-    &copy; vsarapin
-    <div style="float: right">2018</div>
 </div>
 <script src="/js/matrixBackground.js"></script>
 <script src="/js/sidenav.js"></script>

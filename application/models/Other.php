@@ -37,7 +37,12 @@ class Other extends Model {
         foreach ($tmpArray as $key) {
             foreach ($key as $src => $img) {
                 if (file_exists(WWW . "/" . $img)) {
-                    $photo = $photo . "<img src=" ."\"". $img . "\" style=\"padding-right: 10px\">";
+                    $photo = $photo
+                        . "<div style='padding-bottom: 50px'>"
+                        . "<img src=" ."\"". $img . "\">"
+                        . "<figcaption>" . "<a style='float: left; color: white; font-size: 12px; text-decoration: underline; margin-left: 20px' href=''>Comments</a>"
+                        . "<img src=" ."\"". "/png/like.png" . "\" style=\"width: 20px; float:right; margin-right: 20px\">" . "</figcaption>"
+                        . "</div>";
                 }
             }
         }

@@ -6,5 +6,9 @@
 </head>
 <body>
     <?=$content?>
+    <div id="footer" class="hide-on-small-only">
+        &copy; vsarapin
+        <div style="float: right">2018</div>
+    </div>
 </body>
 </html>

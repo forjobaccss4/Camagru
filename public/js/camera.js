@@ -28,6 +28,8 @@ function camera() {
 
     document.getElementById("button").classList.remove("hide");
     document.getElementById("button").classList.add("container");
+    document.getElementById("needShow1").classList.remove("hide");
+    document.getElementById("needShow2").classList.remove("hide");
 
     var frame = document.getElementById('chooseFrame');
     if (document.getElementById("createdFrame")) {
@@ -66,7 +68,4 @@ function camera() {
     variants.style.width = "350px";
     variants.style.height = "250px";
     variants.style.position = "absolute";
-    // variants.style.display = "flex";
-    // variants.style.justifyContent = "center";
-
 }

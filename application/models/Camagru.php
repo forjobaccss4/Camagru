@@ -96,21 +96,21 @@ class Camagru extends Model {
     public function checkLoginRegular($login) {
         $len = strlen($login);
         if (empty($login)) {
-            $this->loginMessage = 'Логин не может быть пустым';
+            $this->message = 'Логин не может быть пустым';
             return false;
         }
         if ($len < 4 || $len > 20) {
-            $this->loginMessage = 'В логине должно быть от 4 до 20 символов';
+            $this->message = 'В логине должно быть от 4 до 20 символов';
             return false;
         }
         if (!preg_match("/^[a-zA-Z1-9]+$/", $login)) {
-            $this->loginMessage = 'В логине должны быть только латинские буквы';
+            $this->message = 'В логине должны быть только латинские буквы';
             return false;
         }
 
         if (!empty($login)) {
             if (is_numeric($login{0})) {
-                $this->loginMessage = 'Логин должен начинаться с буквы';
+                $this->message = 'Логин должен начинаться с буквы';
                 return false;
             }
         }

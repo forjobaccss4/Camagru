@@ -9,14 +9,12 @@
 
 </head>
 <canvas id="matrix" style="position: absolute"></canvas>
-<div id="main" class="container">
-    <div class="row">
-    </div>
+<div id="main" class="container_tmp">
     <nav class="black">
         <div id="primary_nav_wrap" class="nav-wrapper black center-align">
             <div class="row">
                 <div class="col s12 offset-s3 m12 l12">
-                    <ul class="center-align">
+                    <ul>
                         <li>
                             <a href="#" id="" class="col s12"><?=$user?></a>
                             <ul class="left">
@@ -32,8 +30,8 @@
         </div>
     </nav>
 </div>
-<br><br><br><br>
-    <div class="container_tmp" style="margin-top: 50px;">
+<br><br><br><br><br>
+    <div class="container_tmp">
         <style scoped>
             .button-success {
                 background: rgba(45, 150, 45, 0.55);
@@ -64,15 +62,15 @@
         </style>
         <form style="text-align: center; color: white;" class="pure-form pure-form-stacked" method="post" action="/camagru/login">
              <fieldset class="pure-group">
-            <input id="enteredLogin" name="login" class="pure-input-1" type="text" placeholder="Login">
+                <input id="enteredLogin" name="login" class="pure-input-1" type="text" placeholder="Login">
             </fieldset>
             <button id="change_login" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить логин</button>
             <p id="errorLogin" style="color: red; position: relative"></p>
         </form>
         <form style="text-align: center; color: white;" class="pure-form pure-form-stacked" method="post" action="/camagru/password">
             <fieldset class="pure-group">
-                <input id="enteredPass" name="pass" class="pure-input-1" type="password" placeholder="New Password">
-                <input id="enteredRepass" name="repass" class="pure-input-1" type="password" placeholder="Repeat new password">
+                <input id="enteredPass" name="pass" class="" type="password" placeholder="New pass">
+                <input id="enteredRepass" name="repass" class="" type="password" placeholder="Repeat new pass">
             </fieldset>
             <button id="change_pass" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить пароль</button>
             <p id="errorPass" style="color: red; position: relative"></p>
