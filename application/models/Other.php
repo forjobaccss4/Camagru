@@ -16,13 +16,13 @@ class Other extends Model {
         fclose($ifp);
         $tmpArray = ["/png/" . $outputFile];
         $this->insertOne($tmpArray);
-        $imgSmall = 'matrixheroes1.png'; //Тут надо доелать, указыватьб фото не ручками
+        $imgSmall = 'matrixheroes.png'; //Тут надо доелать, указыватьб фото не ручками
         $img1 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $outputFile);
         $img2 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $imgSmall);
         if($img1 && $img2) {
             $x2 = imagesx($img2);
             $y2 = imagesy($img2);
-            imagecopyresampled($img1, $img2, 20, 20, 0, 0, $x2, $y2, $x2, $y2);
+            imagecopyresampled($img1, $img2, -70, -5, 0, 0, $x2, $y2, $x2, $y2);
             imagepng($img1, $path . "/" . $outputFile, 9);
             header('Location: /camagru/');
         } else {
@@ -37,7 +37,7 @@ class Other extends Model {
         foreach ($tmpArray as $key) {
             foreach ($key as $src => $img) {
                 if (file_exists(WWW . "/" . $img)) {
-                    $photo = $photo . "<img src=" ."\"". $img . "\">";
+                    $photo = $photo . "<img src=" ."\"". $img . "\" style=\"padding-right: 10px\">";
                 }
             }
         }

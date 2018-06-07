@@ -13,7 +13,7 @@
         <div id="primary_nav_wrap" class="nav-wrapper black center-align">
             <div class="row">
                 <div class="col s12 offset-s3 m12 l12">
-                    <ul>
+                    <ul class="center-align">
                         <img class="hide-on-med-and-down" src="/gif/TheMatrixAnimated.gif" style="width: 210px">
                         <li>
                             <a href="#" id="" class="col s12"><?=$user?></a>
@@ -30,7 +30,7 @@
         </div>
     </nav>
 </div>
-<br><br><br><br>
+<br><br><br><br><br>
 <div class="container hide-on-med-and-up">
     <div class="row">
         <div class="col s12">
@@ -49,31 +49,30 @@
     </div>
 </div>
 <br><br><br><br>
-<div class="container">
-    <div class="col s12 m8 offset-m2 l6 offset-l3 grey darken-4">
-<!--        <div id="chooseFrame">-->
-            <img id="chooseFrame" style="width: 320px;height: 250px" src="/png/matrixheroes.png">
-<!--        </div>-->
+<div class="container_tmp">
+    <div class="row center-align">
+        <div id="chooseFrame" class="col s12 black center-align">
+        </div>
     </div>
 </div>
 <div class="container">
     <div class="row center-align">
         <div class="col s12 m8 offset-m2 l6 offset-l3">
-            <div id="createFrame"></div>
+            <img id="createFrame">
             <video></video>
             <canvas id="example" width=320 height=0></canvas>
         </div>
         <div id="button" class="hide">
             <form  method="post" action="/camagru/image">
                 <input id="hiddenInput" name="baseImage" class="hide">
-                <button id="snapshot" class="btn waves-effect waves-light" type="submit">make photo</button>
+                <button id="snapshot" class="btn waves-light" type="submit">make photo</button>
             </form>
         </div>
 </div>
 </div>
 <div class="container_tmp">
     <div class="row center-align">
-        <div class="col s12 grey center-align darken-4">
+        <div class="col s12 center-align black">
             <?=$message?>
         </div>
     </div>
@@ -95,6 +94,10 @@
             </form>
         </div>
     </div>
+</div>
+<div id="footer">
+    &copy; vsarapin
+    <div style="float: right">2018</div>
 </div>
 <script src="/js/matrixBackground.js"></script>
 <script src="/js/sidenav.js"></script>

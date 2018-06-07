@@ -29,28 +29,44 @@ function camera() {
     document.getElementById("button").classList.remove("hide");
     document.getElementById("button").classList.add("container");
 
-    var frame = document.getElementById('createFrame');
+    var frame = document.getElementById('chooseFrame');
     if (document.getElementById("createdFrame")) {
         return false;
     }
-    var layout = document.createElement("div");
-    layout.id = "createdFrame";
-    layout.style.width = "350px";
-    layout.style.height = "250px";
-    layout.style.position = "absolute";
-    layout.style.backgroundColor = "transparent";
-    frame.appendChild(layout);
-
-    var variants = document.getElementById('chooseFrame');
-    if (document.getElementById("created")) {
-        return false;
-    }
-    var choose = document.createElement('div');
-    choose.id = "created";
-    choose.style.width = "320px";
-    choose.style.height = "250px";
+    var choose = document.createElement("img");
+    choose.id = "createdFrame";
+    choose.src = '/png/matrixheroes.png';
+    choose.style.width = "150px";
+    choose.style.height = "100px";
     choose.style.position = "relative";
-    choose.style.backgroundColor = "transparent";
-    variants.appendChild(choose);
+    frame.appendChild(choose);
+
+    var choose1 = document.createElement("img");
+    choose1.id = "createdFrame";
+    choose1.src = '/png/matrixheroes.png';
+    choose1.style.width = "150px";
+    choose1.style.height = "100px";
+    choose1.style.position = "relative";
+    frame.appendChild(choose1);
+
+    var choose2 = document.createElement("img");
+    choose2.id = "createdFrame";
+    choose2.src = '/png/matrixheroes.png';
+    choose2.style.width = "150px";
+    choose2.style.height = "100px";
+    choose2.style.position = "relative";
+    frame.appendChild(choose2);
+
+    var variants = document.getElementById('createFrame');
+    if (document.getElementById("created")) {
+         return false;
+    }
+    variants.id = "created";
+    variants.src = '/png/matrixheroes.png';
+    variants.style.width = "350px";
+    variants.style.height = "250px";
+    variants.style.position = "absolute";
+    // variants.style.display = "flex";
+    // variants.style.justifyContent = "center";
 
 }
