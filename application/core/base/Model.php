@@ -43,9 +43,16 @@ abstract class Model {
         $sql = "INSERT INTO {$this->table} (src) VALUES (?)";
         $this->pdo->execute($sql, $fileName);
     }
+    public function addOrRemoveOneLike($table, $change, $data, $row, $hash, $row1, $hash1) {
+        $sql = "UPDATE {$table} SET $change = $data WHERE $row = $hash AND $row1 = $hash1";
+        return $this->pdo->execute($sql);
+    }
     public function updateOne($table, $change, $data, $row, $hash) {
         $sql = "UPDATE {$table} SET $change = $data WHERE $row = $hash";
         return $this->pdo->execute($sql);
     }
-
+    public function insertLikes($values) {
+        $sql = "INSERT INTO {$this->table} (user, photo, likes) VALUES (?, ?, ?)";
+        $this->pdo->execute($sql, $values);
+    }
 }

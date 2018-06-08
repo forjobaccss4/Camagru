@@ -16,7 +16,7 @@ class Other extends Model {
         fclose($ifp);
         $tmpArray = ["/png/" . $outputFile];
         $this->insertOne($tmpArray);
-        $imgSmall = 'matrixheroes.png'; //Тут надо доелать, указыватьб фото не ручками
+        $imgSmall = 'matrixheroes.png'; //Тут надо доделать, указыватьб фото не ручками
         $img1 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $outputFile);
         $img2 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $imgSmall);
         if($img1 && $img2) {
@@ -30,25 +30,74 @@ class Other extends Model {
         }
     }
 
-    public function showAllPhoto() {
+    public function showAllPhoto()
+    {
         $photo = '';
         $this->table = 'images';
         $tmpArray = $this->findAll();
         foreach ($tmpArray as $key) {
-            foreach ($key as $src => $img) {
-                if (file_exists(WWW . "/" . $img)) {
+            if (file_exists(WWW . "/" . $key['src'])) {
+                $likes = $key['likes'];
+                    $src = $key['src'];
                     $photo = $photo
                         . "<div style='padding-bottom: 50px'>"
-                        . "<img src=" ."\"". $img . "\">"
-                        . "<figcaption>" . "<a style='float: left; color: white; font-size: 12px; text-decoration: underline; margin-left: 20px' href=''>Comments</a>"
-                        . "<img id=\"$img\" src=" ."\"". "/png/like.png" . "\" style=\"width: 20px; float:right; margin-right: 20px;\" onclick=\"addLike(this.id)\"\">" . "</figcaption>"
+                        . "<img src=" ."\"". $key['src'] . "\">"
+                        . "<figcaption>" . "<a class='content_img' href=''>Comments</a>" . "<p id='numOfLikes' align=right class='p_like_img'>$likes</p>"
+                        . "<img id=\"$src\" src=" ."\"". "/png/like.png" . "\" class='like_img' onclick=\"addLike(this.id)\">"
+                        ."</figcaption>"
                         . "</div>";
                 }
-            }
         }
         return $photo;
     }
+
     public function addLikes() {
-        debug($_SESSION['login']);
+        $this->table = "likes";
+        $findUser = $this->findAll();
+        if (count($findUser)) {
+            $trigger = 0;
+            foreach ($findUser as $key => $value) {
+                if ($value['user'] == $_SESSION['login'] && $value['photo'] == $_POST['path'] && $value['likes'] == 1) {
+                    $this->addOrRemoveOneLike("likes", "likes", "0", "user", "\"" .$_SESSION['login'] . "\"", "photo", "\"" . $_POST['path'] . "\"");
+                    $this->table = "images";
+                    $foundRow = $this->findOne($_POST['path'], "src");
+                    $numOfLikes = $foundRow[0]['likes'] - 1;
+                    $this->updateOne("images", "likes", $numOfLikes, "src", "\"" . $_POST['path'] . "\"");
+                    $trigger = 1;
+                    echo $numOfLikes;
+                    exit;
+                } else if ($value['user'] == $_SESSION['login'] && $value['photo'] == $_POST['path'] && $value['likes'] == 0) {
+                    $this->addOrRemoveOneLike("likes", "likes", "1", "user", "\"" .$_SESSION['login'] . "\"", "photo", "\"" . $_POST['path'] . "\"");
+                    $this->table = "images";
+                    $foundRow = $this->findOne($_POST['path'], "src");
+                    $numOfLikes = $foundRow[0]['likes'] + 1;
+                    $this->updateOne("images", "likes", $numOfLikes, "src", "\"" . $_POST['path'] . "\"");
+                    $trigger = 1;
+                    echo $numOfLikes;
+                    exit;
+                }
+            }
+            if (!$trigger) {
+                $this->table = "likes";
+                $tmpArray = [$_SESSION['login'], $_POST['path'], "1"];
+                $this->insertLikes($tmpArray);
+                $this->table = "images";
+                $foundRow = $this->findOne($_POST['path'], "src");
+                $numOfLikes = $foundRow[0]['likes'] + 1;
+                $this->updateOne("images", "likes", $numOfLikes, "src", "\"" . $_POST['path'] . "\"");
+                echo $numOfLikes;
+                exit;
+            }
+        }else {
+            $this->table = "likes";
+            $tmpArray = [$_SESSION['login'], $_POST['path'], "1"];
+            $this->insertLikes($tmpArray);
+            $this->table = "images";
+            $foundRow = $this->findOne($_POST['path'], "src");
+            $numOfLikes = $foundRow[0]['likes'] + 1;
+            $this->updateOne("images", "likes", $numOfLikes, "src", "\"" . $_POST['path'] . "\"");
+            echo $numOfLikes;
+            exit;
+        }
     }
 }

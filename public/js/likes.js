@@ -3,7 +3,7 @@ function addLike(pathToFile) {
     var body = "path=" + pathToFile;
     xhr.onreadystatechange = function () {
        if (xhr.readyState == 4) {
-           console.log(xhr.responseText);
+           document.getElementById('numOfLikes').innerHTML = xhr.responseText;
        }
     }
     xhr.open("POST", 'http://localhost:8080/camagru/likes', true);
