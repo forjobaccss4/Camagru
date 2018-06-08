@@ -99,4 +99,5 @@
 <script src="/js/sidenav.js"></script>
 <script src="/js/camera.js"></script>
 <script src="/js/snapshot.js"></script>
+<script src="/js/likes.js"></script>
 </body>
