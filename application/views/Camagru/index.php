@@ -69,14 +69,7 @@
         </div>
     </div>
 </div>
-<div class="container_tmp">
-    <div class="row center-align">
-        <div class="col s12 grey darken-4">
-            <?=$message?>
-        </div>
-    </div>
-</div>
-
+<?=$message?>
 <div id="mySidenav" class="leftbar hide-on-small-only">
     <a href= "javascript:void(0)" class="closebtn" onclick="closeNav()">Close</a>
     <div class="row" style="position: relative">
@@ -99,5 +92,5 @@
 <script src="/js/sidenav.js"></script>
 <script src="/js/camera.js"></script>
 <script src="/js/snapshot.js"></script>
-<script src="/js/likes.js"></script>
+<script src="/js/likesComments.js"></script>
 </body>

@@ -38,15 +38,22 @@ class Other extends Model {
         foreach ($tmpArray as $key) {
             if (file_exists(WWW . "/" . $key['src'])) {
                 $likes = $key['likes'];
-                    $src = $key['src'];
-                    $photo = $photo
-                        . "<div style='padding-bottom: 50px'>"
-                        . "<img src=" ."\"". $key['src'] . "\">"
-                        . "<figcaption>" . "<a class='content_img' href=''>Comments</a>" . "<p id='numOfLikes' align=right class='p_like_img'>$likes</p>"
-                        . "<img id=\"$src\" src=" ."\"". "/png/like.png" . "\" class='like_img' onclick=\"addLike(this.id)\">"
-                        ."</figcaption>"
-                        . "</div>";
-                }
+                $src = $key['src'];
+                $pSrc = $src . "1";
+                $aSrc = $src . "2";
+                $dSrc = $src . "3";
+                $photo = $photo
+                    . "<div class=\"container_tmp\">"
+                    . "<div class=\"row center-align\">"
+                    . "<div class=\"col s12 grey darken-4\">"
+                    . "<div style='padding-bottom: 50px'>"
+                    . "<img src=" ."\"". $key['src'] . "\">"
+                    . "<figcaption>" . "<a id='$aSrc' class='content_img' onclick='addComment(this.id)'>Comments</a>" . "<p id='$pSrc' align=right class='p_like_img'>$likes</p>"
+                    . "<img id=\"$src\" src=" ."\"". "/png/like.png" . "\" class='like_img' onclick=\"addLike(this.id)\">"
+                    ."</figcaption>"
+                    . "<div id='$dSrc'>"
+                    . "</div></div></div></div></div>";
+            }
         }
         return $photo;
     }

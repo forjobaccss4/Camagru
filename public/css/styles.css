@@ -23,6 +23,7 @@ video {
     flex-direction: column;
 }
 .content_img {
+    cursor: pointer;
     float: left;
     color: white;
     font-size: 12px;
@@ -30,6 +31,7 @@ video {
     margin-left: 20px;
 }
 .like_img {
+    cursor: pointer;
     margin-top: -34px;
     width: 20px;
     float:right;
