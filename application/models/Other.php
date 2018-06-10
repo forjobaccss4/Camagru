@@ -107,4 +107,12 @@ class Other extends Model {
             exit;
         }
     }
+
+    public function addComments() {
+        $commentsArray = [$_SESSION['login'], htmlspecialchars(stripslashes($_POST['photo'])), htmlspecialchars(stripslashes($_POST['comment']))];
+        $this->insertComments($commentsArray);
+        echo $_SESSION['login'];
+        exit;
+
+    }
 }

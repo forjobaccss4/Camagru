@@ -55,4 +55,8 @@ abstract class Model {
         $sql = "INSERT INTO {$this->table} (user, photo, likes) VALUES (?, ?, ?)";
         $this->pdo->execute($sql, $values);
     }
+    public function insertComments($values) {
+        $sql = "INSERT INTO comments (user, photo, comment) VALUES (?, ?, ?)";
+        $this->pdo->execute($sql, $values);
+    }
 }

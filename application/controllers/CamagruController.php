@@ -64,5 +64,10 @@ class CamagruController extends AppController {
         $model = new Other();
         $model->addLikes();
     }
+
+    public function commentsAction() {
+        $model = new Other();
+        $model->addComments();
+    }
 }
 ?>
