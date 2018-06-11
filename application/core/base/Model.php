@@ -59,4 +59,9 @@ abstract class Model {
         $sql = "INSERT INTO comments (user, photo, comment) VALUES (?, ?, ?)";
         $this->pdo->execute($sql, $values);
     }
+
+    public function findAllComments($photo) {
+        $sql = "SELECT * FROM comments WHERE photo = $photo";
+        return $this->pdo->query($sql);
+    }
 }

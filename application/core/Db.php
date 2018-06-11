@@ -36,7 +36,7 @@ class Db {
     public function query($sql, $params = []) {
         self::$queries[] = $sql;
         $stmt = $this->pdo->prepare($sql);
-        $res =  $stmt->execute($params);
+        $res = $stmt->execute($params);
         if ($res !== false) {
             return $stmt->fetchAll();
         }

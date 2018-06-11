@@ -25,7 +25,7 @@ class Other extends Model {
             imagecopyresampled($img1, $img2, -70, -5, 0, 0, $x2, $y2, $x2, $y2);
             imagepng($img1, $path . "/" . $outputFile, 9);
             header('Location: /camagru/');
-        } else {
+        }else {
             ErrorController::errorPage();
         }
     }
@@ -35,6 +35,7 @@ class Other extends Model {
         $photo = '';
         $this->table = 'images';
         $tmpArray = $this->findAll();
+        $tmpArray = array_reverse($tmpArray);
         foreach ($tmpArray as $key) {
             if (file_exists(WWW . "/" . $key['src'])) {
                 $likes = $key['likes'];
@@ -50,7 +51,7 @@ class Other extends Model {
                     . "<img src=" ."\"". $key['src'] . "\">"
                     . "<figcaption>" . "<a id='$aSrc' class='content_img' onclick='addComment(this.id)'>Comments</a>" . "<p id='$pSrc' align=right class='p_like_img'>$likes</p>"
                     . "<img id=\"$src\" src=" ."\"". "/png/like.png" . "\" class='like_img' onclick=\"addLike(this.id)\">"
-                    ."</figcaption>"
+                    . "</figcaption>"
                     . "<div id='$dSrc'>"
                     . "</div></div></div></div></div>";
             }
@@ -109,10 +110,31 @@ class Other extends Model {
     }
 
     public function addComments() {
-        $commentsArray = [$_SESSION['login'], htmlspecialchars(stripslashes($_POST['photo'])), htmlspecialchars(stripslashes($_POST['comment']))];
+        $comment = htmlspecialchars(stripslashes("<b>" . "<p align='left'>" . $_SESSION['login'] . ":" . "<p>" . "</b>" . "<p align='left'>" . $_POST['comment'] . "<p>"));
+        $commentsArray = [$_SESSION['login'], htmlspecialchars(stripslashes($_POST['photo'])), $comment];
         $this->insertComments($commentsArray);
         echo $_SESSION['login'];
         exit;
+    }
 
+    public function loadComments() {
+//        header('Access-Control-Allow-Origin: http://localhost:8080');
+        $tmpComments = '';
+        $allComments = $this->findAllComments("\"" . $_POST['commentId'] . "\"");
+        $allComments = array_reverse($allComments);
+        if (!count($allComments)) {
+            echo "";
+            exit;
+        }else {
+            foreach ($allComments as $key => $value) {
+                    $tmpComments = $tmpComments . htmlspecialchars_decode($value['comment']);
+//                    if ($value['user'] == $_SESSION['login']) {
+//                        $tmpLinks = htmlspecialchars("<span style='text-align: left'>удалить</span>");
+//                        $tmpComments = $tmpComments . htmlspecialchars_decode($tmpLinks);
+//                    }
+            }
+            echo $tmpComments;
+            exit;
+        }
     }
 }

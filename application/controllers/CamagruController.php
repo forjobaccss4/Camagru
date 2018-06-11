@@ -69,5 +69,9 @@ class CamagruController extends AppController {
         $model = new Other();
         $model->addComments();
     }
+    public function loadCommentsAction() {
+        $model = new Other();
+        $model->loadComments();
+    }
 }
 ?>

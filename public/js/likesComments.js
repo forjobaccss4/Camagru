@@ -38,8 +38,10 @@ function addComment(id) {
     newDiv.style.borderRadius = "5px";
 
     var divBorder =  document.createElement("div");
+    divBorder.style.overflowX = "hidden";
+    divBorder.style.wordWrap = "break-word";
     divBorder.style.width = "310px";
-    divBorder.style.lineHeight = "0.5";
+    divBorder.style.lineHeight = "15px";
     divBorder.style.height = "250px";
     divBorder.style.border = "1px #A4a195 solid";
     divBorder.style.borderRadius = "5px";
@@ -63,6 +65,18 @@ function addComment(id) {
     newDiv.appendChild(newTextArea);
     newDiv.appendChild(newTextAreaButton);
 
+    var XML = new XMLHttpRequest();
+    var body = "commentId=" + divComments.slice(0, -1);
+    XML.onreadystatechange = function () {
+        if (XML.readyState === 4) {
+            var elem = document.getElementById(newCommentsMessage).parentNode.firstChild;
+            elem.insertAdjacentHTML("afterBegin", XML.responseText);
+        }
+    };
+    XML.open("POST", 'http://localhost:8080/camagru/loadComments', true);
+    XML.setRequestHeader("Content-Type",  "application/x-www-form-urlencoded" );
+    XML.send(body);
+
     newTextAreaButton.addEventListener("click", function () {
         var xhr = new XMLHttpRequest();
         var comment = newCommentsMessage.slice(0, -1);
@@ -72,28 +86,26 @@ function addComment(id) {
             alert("Комментарий не может быть пустым!");
             return false;
         }
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState === 4) {
+                if (document.getElementById(newCommentsMessage).parentNode.firstChild.innerHTML.length > 0) {
+                    var join = document.getElementById(newCommentsMessage).parentNode.firstChild.innerHTML;
+                    var showComment = "<b>" + "<p align='left'>" + xhr.responseText + ":" + "<p>" + "</b>" + "<p align='left'>" + document.getElementById(newCommentsMessage).value + "</p>" + join;
+                    document.getElementById(newCommentsMessage).parentNode.firstChild.innerHTML = showComment;
+                }else {
+                    var newComment = "<p align='left'>" + document.getElementById(newCommentsMessage).value + "<p>";
+                    var showMessage = "<b>" + "<p align='left'>" + xhr.responseText + ":" + "</p>" + "</b>" + newComment;
+                    document.getElementById(newCommentsMessage).parentNode.firstChild.innerHTML = showMessage;
+                }
+            }
+        };
         if (document.getElementById(newCommentsMessage).value.length > 256) {
             alert("В комментарии не может быть больше 256 символов!");
             document.getElementById(newCommentsMessage).value = "";
             return false;
         }
-
-        xhr.onreadystatechange = function () {
-            if (xhr.readyState == 4) {
-                if (document.getElementById(newCommentsMessage).parentNode.firstChild.innerHTML.length > 0) {
-                    var join = document.getElementById(newCommentsMessage).parentNode.firstChild.innerHTML;
-                    var message = join + "<b>" + "<p align='left'>" + xhr.responseText + ":" + "<p>" + "</b>" + "<p align='left'>" + document.getElementById(newCommentsMessage).value + "<p>";
-                    document.getElementById(newCommentsMessage).parentNode.firstChild.innerHTML = message;
-                    return false;
-                }
-                message = "<p align='left'>" + document.getElementById(newCommentsMessage).value + "<p>";
-                var showMessage = "<b>" + "<p align='left'>" + xhr.responseText + ":" + "<p>" + "</b>" +  message;
-                document.getElementById(newCommentsMessage).parentNode.firstChild.innerHTML = showMessage;
-                return false; //delete this check
-            }
-        };
         xhr.open("POST", 'http://localhost:8080/camagru/comments', true);
         xhr.setRequestHeader("Content-Type",  "application/x-www-form-urlencoded" );
         xhr.send(message);
-    }, true);
+    });
 }
