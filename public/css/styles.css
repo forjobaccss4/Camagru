@@ -280,3 +280,9 @@ video {
     height: 30px;
 }
 
+.choose_img {
+    width: 150px;
+    height: 100px;
+    position: relative;
+    cursor: pointer;
+}

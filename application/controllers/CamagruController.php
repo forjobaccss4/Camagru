@@ -57,7 +57,7 @@ class CamagruController extends AppController {
 
     public function imageAction() {
         $model = new Other();
-        $model->makeImage($_POST['baseImage']);
+        $model->makeImage($_POST['baseImage'], $_POST['stickerId']);
     }
 
     public function likesAction() {

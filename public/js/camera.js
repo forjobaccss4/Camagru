@@ -1,3 +1,12 @@
+document.getElementById('snapshot').onclick = function() {
+    var video = document.querySelector('video');
+    var canvas = document.getElementById('example');
+    canvas.height = 250;
+    var context = canvas.getContext('2d');
+    context.drawImage(video, 0, 0, 320, 245);
+    document.getElementById("hiddenInput").value = canvas.toDataURL('image/png');
+};
+
 function camera() {
     var constraints = {video: true};
     if (navigator.mediaDevices.getUserMedia(constraints)) {
@@ -28,44 +37,20 @@ function camera() {
 
     document.getElementById("button").classList.remove("hide");
     document.getElementById("button").classList.add("container");
+    document.getElementById("snapshot").classList.add("disabled");//disabled
     document.getElementById("needShow1").classList.remove("hide");
     document.getElementById("needShow2").classList.remove("hide");
 
-    var frame = document.getElementById('chooseFrame');
-    if (document.getElementById("createdFrame")) {
-        return false;
-    }
-    var choose = document.createElement("img");
-    choose.id = "createdFrame";
-    choose.src = '/png/matrixheroes.png';
-    choose.style.width = "150px";
-    choose.style.height = "100px";
-    choose.style.position = "relative";
-    frame.appendChild(choose);
 
-    var choose1 = document.createElement("img");
-    choose1.id = "createdFrame";
-    choose1.src = '/png/matrixheroes.png';
-    choose1.style.width = "150px";
-    choose1.style.height = "100px";
-    choose1.style.position = "relative";
-    frame.appendChild(choose1);
+}
 
-    var choose2 = document.createElement("img");
-    choose2.id = "createdFrame";
-    choose2.src = '/png/matrixheroes.png';
-    choose2.style.width = "150px";
-    choose2.style.height = "100px";
-    choose2.style.position = "relative";
-    frame.appendChild(choose2);
-
+function chooseSticker(id) {
     var variants = document.getElementById('createFrame');
-    if (document.getElementById("created")) {
-         return false;
-    }
-    variants.id = "created";
-    variants.src = '/png/matrixheroes.png';
+    variants.src = id;
     variants.style.width = "350px";
     variants.style.height = "250px";
     variants.style.position = "absolute";
+    document.getElementById("snapshot").classList.remove("disabled");
+    document.getElementById("hiddenInput1").value = id;
+
 }

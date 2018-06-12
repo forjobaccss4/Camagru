@@ -51,6 +51,9 @@
 <div id="needShow1" class="container_tmp hide">
     <div class="row center-align">
         <div id="chooseFrame" class="col s12 black center-align">
+            <img id="/png/matrixheroes.png" src="/png/matrixheroes.png" class="choose_img" onclick="chooseSticker(this.id)">
+            <img id="/png/matrixheroes1.png" src="/png/matrixheroes1.png" class="choose_img" onclick="chooseSticker(this.id)">
+            <img id="/png/matrixheroes2.png" src="/png/matrixheroes2.png" class="choose_img" onclick="chooseSticker(this.id)">
         </div>
     </div>
 </div>
@@ -64,6 +67,7 @@
         <div id="button" class="hide">
             <form  method="post" action="/camagru/image">
                 <input id="hiddenInput" name="baseImage" class="hide">
+                <input id="hiddenInput1" name="stickerId" class="hide">
                 <button id="snapshot" class="btn waves-light" type="submit">make photo</button>
             </form>
         </div>
@@ -91,6 +95,5 @@
 <script src="/js/matrixBackground.js"></script>
 <script src="/js/sidenav.js"></script>
 <script src="/js/camera.js"></script>
-<script src="/js/snapshot.js"></script>
 <script src="/js/likesComments.js"></script>
 </body>

@@ -7,7 +7,8 @@ use application\core\base\Model;
 
 class Other extends Model {
 
-    public function makeImage($imageBaseCode){
+    public function makeImage($imageBaseCode, $pathToSticker){
+        $pathToSticker = explode("/", $pathToSticker);
         $path = ROOT . "/public/png";
         $outputFile = md5(uniqid(rand(),1)) . ".png";
         $ifp = fopen($path . "/" . $outputFile, 'wb');
@@ -16,7 +17,7 @@ class Other extends Model {
         fclose($ifp);
         $tmpArray = ["/png/" . $outputFile];
         $this->insertOne($tmpArray);
-        $imgSmall = 'matrixheroes.png'; //Тут надо доделать, указыватьб фото не ручками
+        $imgSmall = $pathToSticker[2];
         $img1 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $outputFile);
         $img2 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $imgSmall);
         if($img1 && $img2) {
@@ -118,7 +119,6 @@ class Other extends Model {
     }
 
     public function loadComments() {
-//        header('Access-Control-Allow-Origin: http://localhost:8080');
         $tmpComments = '';
         $allComments = $this->findAllComments("\"" . $_POST['commentId'] . "\"");
         $allComments = array_reverse($allComments);
