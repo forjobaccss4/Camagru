@@ -37,7 +37,7 @@ function camera() {
 
     document.getElementById("button").classList.remove("hide");
     document.getElementById("button").classList.add("container");
-    document.getElementById("snapshot").classList.add("disabled");//disabled
+    document.getElementById("snapshot").classList.add("disabled");
     document.getElementById("needShow1").classList.remove("hide");
     document.getElementById("needShow2").classList.remove("hide");
 

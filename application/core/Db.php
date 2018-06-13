@@ -11,12 +11,25 @@ class Db {
     public static $queries = [];
 
     protected function __construct() {
-        $db = require_once APP . '/config/config_db.php';
+        $db = require_once APP . '/config/database.php';
         $options = [
             \PDO::ATTR_ERRMODE => \PDO::ERRMODE_EXCEPTION,
             \PDO::ATTR_DEFAULT_FETCH_MODE => \PDO::FETCH_ASSOC,
         ];
-        $this->pdo = new \PDO($db['dsn'], $db['user'], $db['pass'], $options);
+        $this->pdo = new \PDO($db['dsn'], $db['user'],   $db['pass'], $options);
+        $sql = " SELECT COUNT(*) FROM information_schema.SCHEMATA WHERE SCHEMA_NAME LIKE \"camagru\"";
+        $trash = $this->query($sql);
+        if (!$trash[0]['COUNT(*)']) {
+            $sql = "CREATE DATABASE camagru";
+            $this->execute($sql);
+            $sql = "USE camagru";
+            $this->execute($sql);
+            $sql = require_once APP . '/config/setup.php';
+            $this->execute($sql);
+        }else {
+            $sql = "USE camagru";
+            $this->execute($sql);
+        }
     }
 
     public static function instance() {

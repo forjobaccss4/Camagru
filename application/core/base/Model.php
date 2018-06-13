@@ -40,7 +40,7 @@ abstract class Model {
     }
     public function insertOne($fileName) {
         $this->table = "images";
-        $sql = "INSERT INTO {$this->table} (src) VALUES (?)";
+        $sql = "INSERT INTO {$this->table} (user, src) VALUES (?, ?)";
         $this->pdo->execute($sql, $fileName);
     }
     public function addOrRemoveOneLike($table, $change, $data, $row, $hash, $row1, $hash1) {
@@ -63,5 +63,22 @@ abstract class Model {
     public function findAllComments($photo) {
         $sql = "SELECT * FROM comments WHERE photo = $photo";
         return $this->pdo->query($sql);
+    }
+
+    public function updateUserLogin($table, $column, $replaceThis, $onThat) {
+        $sql = "UPDATE $table SET $column = REPLACE($column, $replaceThis, $onThat)";
+        return $this->pdo->execute($sql);
+    }
+    public function deletePhoto($photo) {
+        $sql = "DELETE FROM images WHERE src = $photo";
+        return $this->pdo->execute($sql);
+    }
+    public function deleteComments($photo) {
+        $sql = "DELETE FROM comments WHERE photo = $photo";
+        return $this->pdo->execute($sql);
+    }
+    public function deleteLikes($photo) {
+        $sql = "DELETE FROM likes WHERE photo = $photo";
+        return $this->pdo->execute($sql);
     }
 }

@@ -56,15 +56,15 @@ function testLogin(enteredLogin) {
         return false;
     }
     if (/^[a-zA-Z1-9]+$/.test(enteredLogin) === false) {
-        returnElement('errorLogin').innerHTML = 'В логине должны быть только латинские буквы';
+        returnElement('errorLogin').innerHTML = 'В логине должны быть <br> только латинские буквы';
         return false;
     }
     if (enteredLogin.length < 4 || enteredLogin.length > 20) {
-        returnElement('errorLogin').innerHTML = 'В логине должно быть от 4 до 20 символов';
+        returnElement('errorLogin').innerHTML = 'В логине должно <br> быть от 4 до 20 символов';
         return false;
     }
     if (parseInt(enteredLogin.substr(0, 1))) {
-        returnElement('errorLogin').innerHTML = 'Логин должен начинаться с буквы';
+        returnElement('errorLogin').innerHTML = 'Логин должен начинаться <br> с буквы';
         return false;
     }
 
@@ -84,7 +84,13 @@ function testPasswords() {
         return false;
     }
     if (pass.value.length < 8) {
-        returnElement('errorPass').innerHTML = 'Пароль должен состоять минимум из 8 символов';
+        returnElement('errorPass').innerHTML = 'Пароль должен состоять <br> минимум из 8 символов';
+        return false;
+    }
+
+    var pass_regexp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/i;
+    if (!pass_regexp.test(pass.value)) {
+        returnElement('errorPass').innerHTML = 'В пароле должна быть <br> маленькая и большая <br> буквы а также одна цифра!';
         return false;
     }
     return true;
@@ -106,7 +112,7 @@ function testName(enteredName) {
         return false;
     }
     if (/^[a-za-zа-яA-ZФ-Я]+$/.test(enteredName) == false) {
-        returnElement('errorName').innerHTML = 'В имени должны быть только буквы';
+        returnElement('errorName').innerHTML = 'В имени должны <br> быть только буквы';
         return false;
     }
     return true;
@@ -124,7 +130,7 @@ function testMail() {
     }
 
     if (mail.value == "") {
-        returnElement('errorMail').innerHTML = 'Email не может быть пустым';
+        returnElement('errorMail').innerHTML = 'Email не может <br> быть пустым';
         value = false;
     }
     return value;
@@ -144,4 +150,17 @@ function shakeInput(inputName, button) {
     input.addEventListener("animationend", function() {
         input.classList.remove("apply-shake");
 });
+}
+
+function removeNotifications() {
+    var xhr = new XMLHttpRequest();
+    var body = "notEmpty=yes";
+    xhr.open("post", "http://localhost:8080/camagru/notification", true);
+    xhr.setRequestHeader("Content-Type",  "application/x-www-form-urlencoded" );
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            document.getElementById("notification").innerHTML = xhr.responseText;
+        }
+    };
+    xhr.send(body);
 }

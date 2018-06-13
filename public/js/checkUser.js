@@ -147,6 +147,15 @@ function testPassword() {
         password = 'Пароль не может быть пустым';
         return false;
     }
+    if (pass.value.length < 8) {
+        password = 'Пароль должен состоять минимум из 8 символов';
+        return false;
+    }
+    var pass_regexp = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$/i;
+    if (!pass_regexp.test(pass.value)) {
+        password = 'В пароле должна быть маленькая и большая буквы а также одна цифра!';
+        return false;
+    }
     return true;
 }
 

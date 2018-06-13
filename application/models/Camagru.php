@@ -26,15 +26,19 @@ class Camagru extends Model {
         $this->table = 'user';
     }
 
-    public function changeLogin(){
+    public function changeLogin() {
         $tmp = $this->postArray['login'];
         if (!count($checkLogin = $this->findOne($this->postArray['login'], "login"))) {
             if ($trueFalse = $this->checkLoginRegular($this->postArray['login'])) {
                 $changeLogin = $this->findOne($this->login, "login");
+                $prevLogin = $this->login;
                 $this->login = $_SESSION['login'] = $this->postArray['login'];
                 $this->updateOne($this->table, "login", "\"$tmp\"", "id", $changeLogin[0]['id']);
+                $this->updateUserLogin("images", "user", "\"" . $prevLogin . "\"", "\"" . $this->postArray['login'] . "\"");
+                $this->updateUserLogin("likes", "user", "\"" . $prevLogin . "\"", "\"" . $this->postArray['login'] . "\"");
+                $this->updateUserLogin("comments", "user", "\"" . $prevLogin . "\"", "\"" . $this->postArray['login'] . "\"");
                 header('Location: /camagru/cabinet');
-            }else {
+            } else {
                 ErrorController::whooopsAction($this->route, $this->message);
             }
         }else {

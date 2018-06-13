@@ -57,21 +57,64 @@ class CamagruController extends AppController {
 
     public function imageAction() {
         $model = new Other();
+        if (empty($_POST['baseImage']) || empty($_POST['stickerId'])) {
+            ErrorController::errorPage();
+            exit;
+        }
         $model->makeImage($_POST['baseImage'], $_POST['stickerId']);
     }
 
     public function likesAction() {
+        if (empty($_POST['path'])){
+            ErrorController::errorPage();
+            exit;
+        }
         $model = new Other();
         $model->addLikes();
     }
 
     public function commentsAction() {
+        if (empty($_POST['comment']) || empty($_POST['photo'])) {
+            ErrorController::errorPage();
+            exit;
+        }
         $model = new Other();
         $model->addComments();
     }
     public function loadCommentsAction() {
+        if (empty($_POST['commentId'])) {
+            ErrorController::errorPage();
+            exit;
+        }
         $model = new Other();
         $model->loadComments();
+    }
+
+    public function notificationAction() {
+        if (empty($_POST['notEmpty'])) {
+            ErrorController::errorPage();
+            exit;
+        }
+        $model = new Other();
+        $model->removeNotification();
+    }
+
+    public function notificationCheckerAction() {
+        if (empty($_POST['notEmpty'])) {
+            ErrorController::errorPage();
+            exit;
+        }
+        $model = new Other();
+        $model->checkNotification();
+    }
+
+    public function deletePhotoAction() {
+        if (empty($_POST['deleteId'])){
+            ErrorController::errorPage();
+            exit;
+        }
+        $model = new Other();
+        $model->deleteUserPhoto($_POST['deleteId']);
     }
 }
 ?>

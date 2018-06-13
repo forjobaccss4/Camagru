@@ -33,6 +33,9 @@ class Authorization extends Model
         $this->repassword = crypt(trim(htmlspecialchars(stripslashes($repassword))), "ZqbHp9lb");
         if (!hash_equals($this->password, $this->repassword))
             array_push($this->errorArray, "Пароли не совпадают!");
+        if (!preg_match("/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $password)) {
+            array_push($this->errorArray,"Пароль должен состоять минимум" . "<br>" . " из 8 символов, одной цифры, одной буквы" . "<br>" . "в верхнем регистре и одной в нижнем");
+        }
         $this->name = trim(htmlspecialchars(stripslashes($name)));
         if (filter_var($email, FILTER_VALIDATE_EMAIL))
             $this->email = $email;

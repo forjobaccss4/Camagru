@@ -89,8 +89,10 @@
             <button id="change_mail" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="return getNameOfField(this.id)">Изменить email</button>
             <p id="errorMail" style="color: red; position: relative"></p>
         </form>
+        <button id="notification" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="removeNotifications()"></button>
     </div>
 </div>
 <script src="/js/matrixBackground.js"></script>
 <script src="/js/changeUserDataPage.js"></script>
+<script src="/js/notifications.js"></script>
 </body>
