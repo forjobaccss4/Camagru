@@ -33,6 +33,7 @@ class Other extends Model {
 
     public function showAllPhoto()
     {
+        $counter = 0;
         $photo = '';
         $this->table = 'images';
         $tmpArray = $this->findAll();
@@ -43,12 +44,14 @@ class Other extends Model {
             $pSrc = $src . "1";
             $aSrc = $src . "2";
             $dSrc = $src . "3";
-            $rSrc = $src . "4";
+            $rSrc = $src . "6";
             if (file_exists(WWW . "/" . $key['src']) && ($key['user'] == $_SESSION['login'])) {
+                $counter++;
+                $tmpCounter = $counter . "a";
                 $photo = $photo
-                    . "<div class=\"container_tmp\">"
+                    . "<div id='$tmpCounter' class=\"container_tmp hide\">"
                     . "<div class=\"row center-align\">"
-                    . "<div class=\"col s12 grey darken-4\">"
+                    . "<div class=\"col s12 grey darken-4\" style='border-radius: 5px'>"
                     . "<div style='padding-bottom: 50px'>"
                     . "<img style='margin-top: 10px' src=" ."\"". $key['src'] . "\">"
                     . "<figcaption>" . "<a id='$aSrc' class='content_img' onclick='addComment(this.id)'>Comments</a>" . "<p id='$pSrc' align=right class='p_like_img'>$likes</p>"
@@ -58,14 +61,48 @@ class Other extends Model {
                     . "<div id='$dSrc'>"
                     . "</div></div></div></div></div>";
             }else if (file_exists(WWW . "/" . $key['src']) && ($key['user'] !== $_SESSION['login'])) {
+                $counter++;
+                $tmpCounter = $counter . "a";
                 $photo = $photo
-                    . "<div class=\"container_tmp\">"
+                    . "<div id='$tmpCounter' class=\"container_tmp hide\">"
                     . "<div class=\"row center-align\">"
                     . "<div class=\"col s12 grey darken-4\">"
                     . "<div style='padding-bottom: 50px'>"
                     . "<img style='margin-top: 10px' src=" ."\"". $key['src'] . "\">"
                     . "<figcaption>" . "<a id='$aSrc' class='content_img' onclick='addComment(this.id)'>Comments</a>" . "<p id='$pSrc' align=right class='p_like_img'>$likes</p>"
                     . "<img id=\"$src\" src=" ."\"". "/png/like.png" . "\" class='like_img' onclick=\"addLike(this.id)\">"
+                    . "</figcaption>"
+                    . "<div id='$dSrc'>"
+                    . "</div></div></div></div></div>";
+            }
+        }
+        return $photo;
+    }
+
+    public function showGallery() {
+        $counter = 0;
+        $photo = '';
+        $this->table = 'images';
+        $tmpArray = $this->findAll();
+        $tmpArray = array_reverse($tmpArray);
+        foreach ($tmpArray as $key) {
+            $likes = $key['likes'];
+            $src = $key['src'];
+            $pSrc = $src . "1";
+            $aSrc = $src . "2";
+            $dSrc = $src . "3";
+            $rSrc = $src . "6";
+            if (file_exists(WWW . "/" . $key['src'])) {
+                $counter++;
+                $tmpCounter = $counter . "a";
+                $photo = $photo
+                    . "<div id='$tmpCounter' class=\"container_tmp hide\">"
+                    . "<div class=\"row center-align\">"
+                    . "<div class=\"col s12 grey darken-4\">"
+                    . "<div style='padding-bottom: 50px'>"
+                    . "<img style='margin-top: 10px' src=" ."\"". $key['src'] . "\">"
+                    . "<figcaption>" . "<a id='$aSrc' class='content_img' onclick='showComment(this.id)'>Comments</a>" . "<p id='$pSrc' align=right class='p_like_img'>$likes</p>"
+                    . "<img id=\"$src\" src=" ."\"". "/png/like.png" . "\" class='like_img'>"
                     . "</figcaption>"
                     . "<div id='$dSrc'>"
                     . "</div></div></div></div></div>";

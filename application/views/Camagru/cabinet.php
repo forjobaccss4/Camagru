@@ -19,7 +19,6 @@
                             <a href="#" id="" class="col s12"><?=$user?></a>
                             <ul class="left">
                                 <li><a href="/camagru">Главная</a></li>
-                                <li><a href="/authorization">Регистрация</a></li>
                                 <li><a href="/camagru/cabinet">Личный кабинет</a></li>
                                 <?=$logout?>
                             </ul>

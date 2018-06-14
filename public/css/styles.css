@@ -271,7 +271,6 @@ video {
 }
 #footer {
     position: fixed;
-    vertical-align: middle;
     left: 0;
     bottom: 0;
     background: #212121;

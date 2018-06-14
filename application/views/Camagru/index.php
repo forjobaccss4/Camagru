@@ -3,7 +3,7 @@
     <link rel="stylesheet" href="/css/menu.css">
     <link rel="stylesheet" href="/css/additional.css">
 </head>
-<body style="background-color: black;">
+<div style="background-color: black;">
 <canvas id="matrix" style="position: absolute"></canvas>
 <div id="main" class="container">
     <div class="row">
@@ -19,7 +19,6 @@
                             <a href="#" id="" class="col s12"><?=$user?></a>
                             <ul class="left">
                                 <li><a href="/camagru">Главная</a></li>
-                                <li><a href="/authorization">Регистрация</a></li>
                                 <li><a href="/camagru/cabinet">Личный кабинет</a></li>
                                 <?=$logout?>
                             </ul>
@@ -92,9 +91,18 @@
         </div>
     </div>
 </div>
+<div class="container_tmp">
+    <div class="row">
+        <div class="col s12">
+            <ul id="pagination" class="pagination">
+            </ul>
+        </div>
+    </div>
+</div>
 <script src="/js/matrixBackground.js"></script>
 <script src="/js/sidenav.js"></script>
 <script src="/js/camera.js"></script>
 <script src="/js/likesComments.js"></script>
 <script src="/js/deletePhoto.js"></script>
-</body>
+<script src="/js/pagination.js"></script>
+</div>

@@ -52,9 +52,10 @@ function addComment(id) {
     newTextArea.style.height = "70px";
     newTextArea.style.width = "315px";
     newTextArea.style.backgroundColor = "grey";
-    newTextArea.style.border = "1px";
+    newTextArea.style.border = "1px black solid";
     newTextArea.style.borderRadius = "5px";
     newTextArea.style.marginTop = "5px";
+    newTextArea.placeholder = "Введите свое сообщение...";
 
     var newTextAreaButton = document.createElement("button");
     newTextAreaButton.innerHTML = "Отправить";
@@ -108,4 +109,56 @@ function addComment(id) {
         xhr.setRequestHeader("Content-Type",  "application/x-www-form-urlencoded" );
         xhr.send(message);
     });
+}
+
+
+
+function showComment(id) {
+    var divComments = id.slice(0, -1);
+    var newCommentsBlock = divComments + "4";
+    var newCommentsMessage = divComments + "5";
+    divComments = divComments + "3";
+    var comment = document.getElementById(divComments);
+    if (document.getElementById(newCommentsBlock)) {
+        document.getElementById(newCommentsBlock).remove();
+        return false;
+    }
+
+    var newDiv = document.createElement("div");
+    newDiv.id = newCommentsBlock;
+    newDiv.style.resize = "none";
+    newDiv.style.overflow = "auto";
+    newDiv.style.width = "320px";
+    newDiv.style.height = "320px";
+    newDiv.style.display = "flex";
+    newDiv.style.flexDirection = "column";
+    newDiv.style.backgroundColor = "white";
+    newDiv.style.justifyContent = "flex-start";
+    newDiv.style.alignItems = "center";
+    newDiv.style.borderRadius = "5px";
+
+    var divBorder =  document.createElement("div");
+    divBorder.style.overflowX = "hidden";
+    divBorder.style.wordWrap = "break-word";
+    divBorder.style.marginTop = "10px";
+    divBorder.style.width = "310px";
+    divBorder.style.lineHeight = "15px";
+    divBorder.style.height = "250px";
+    divBorder.style.border = "1px #A4a195 solid";
+    divBorder.style.borderRadius = "5px";
+
+    comment.appendChild(newDiv);
+    newDiv.appendChild(divBorder);
+
+    var XML = new XMLHttpRequest();
+    var body = "commentId=" + divComments.slice(0, -1);
+    XML.onreadystatechange = function () {
+        if (XML.readyState === 4) {
+            var elem = document.getElementById(newCommentsBlock).firstChild;
+            elem.insertAdjacentHTML("afterBegin", XML.responseText);
+        }
+    };
+    XML.open("POST", 'http://localhost:8080/camagru/loadComments', true);
+    XML.setRequestHeader("Content-Type",  "application/x-www-form-urlencoded" );
+    XML.send(body);
 }

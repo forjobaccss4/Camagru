@@ -10,9 +10,6 @@ class CamagruController extends AppController {
     public function __construct($route) {
         parent::__construct($route);
         session_start();
-        if (!isset($_SESSION['login'])) {
-            ErrorController::errorPage();
-        }
         if (isset($_SESSION['login'])) {
             $this->user = $_SESSION['login'];
             $this->button = "<li><a href=\"/camagru/logout\">Выйти</a></li>";
@@ -20,8 +17,13 @@ class CamagruController extends AppController {
     }
 
     public function indexAction() {
-        $model = new Other();
-        $this->message = $model->showAllPhoto();
+        if (isset($_SESSION['login'])) {
+            $model = new Other();
+            $this->message = $model->showAllPhoto();
+        }else {
+            $model = new Other();
+            $this->message = $model->showGallery();
+        }
     }
 
     public function logoutAction() {
@@ -34,7 +36,10 @@ class CamagruController extends AppController {
     }
 
     public function cabinetAction() {
-
+        if (empty($_SESSION['login'])){
+            ErrorController::errorPage();
+            exit;
+        }
     }
 
     public function loginAction() {
@@ -81,6 +86,7 @@ class CamagruController extends AppController {
         $model = new Other();
         $model->addComments();
     }
+
     public function loadCommentsAction() {
         if (empty($_POST['commentId'])) {
             ErrorController::errorPage();
