@@ -6,9 +6,10 @@
 </head>
 <div class="container">
     <canvas id="matrix"></canvas>
-    <nav id="primary_nav_wrap">
+    <nav id="primary_nav_wrap" style="position:absolute; top: 0;">
         <ul>
             <?=$logout?>
+            <li>asasd</li>
         </ul>
     </nav>
     <div id="forLoginPage" style="display: flex; position: absolute">

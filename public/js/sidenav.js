@@ -12,8 +12,4 @@ window.onresize = function() {
     if (width <= 600) {
         document.getElementById("main").style.marginLeft= "auto";
     }
-}
-
-function submit() {
-    document.getElementById('download').submit;
-}
+};

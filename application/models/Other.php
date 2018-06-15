@@ -7,28 +7,119 @@ use application\core\base\Model;
 
 class Other extends Model {
 
-    public function makeImage($imageBaseCode, $pathToSticker){
-        $pathToSticker = explode("/", $pathToSticker);
+    public $img1;
+
+    public function makeImage($imageBaseCode, $pathToSticker)
+    {
         $path = ROOT . "/public/png";
-        $outputFile = md5(uniqid(rand(),1)) . ".png";
+        $outputFile = md5(uniqid(rand(), 1)) . ".png";
         $ifp = fopen($path . "/" . $outputFile, 'wb');
-        $data = explode( ',', $imageBaseCode );
-        fwrite($ifp, base64_decode($data[1]));
-        fclose($ifp);
-        $tmpArray = [$_SESSION['login'], "/png/" . $outputFile];
-        $this->insertOne($tmpArray);
-        $imgSmall = $pathToSticker[2];
-        $img1 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $outputFile);
-        $img2 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $imgSmall);
-        if($img1 && $img2) {
-            $x2 = imagesx($img2);
-            $y2 = imagesy($img2);
-            imagecopyresampled($img1, $img2, -70, -5, 0, 0, $x2, $y2, $x2, $y2);
-            imagepng($img1, $path . "/" . $outputFile, 9);
-            header('Location: /camagru/');
-        }else {
-            ErrorController::errorPage();
+        $data = explode(',', $imageBaseCode);
+
+        $trigger = 0;
+        foreach ($pathToSticker as $key => $value) {
+            if (!empty($value)) {
+                if (!$trigger) {
+                    $value = explode("/", $value);
+                    fwrite($ifp, base64_decode($data[1]));
+                    fclose($ifp);
+                    $tmpArray = [$_SESSION['login'], "/png/" . $outputFile];
+                    $this->insertOne($tmpArray);
+                    $imgSmall = $value[2];
+                    $this->img1 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $outputFile);
+                    $img2 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $imgSmall);
+                    if ($this->img1 && $img2) {
+                        $x2 = imagesx($img2);
+                        $y2 = imagesy($img2);
+                        imagecopyresampled($this->img1, $img2, 20, 0, 0, 0, $x2, $y2, $x2, $y2);
+                    } else {
+                        ErrorController::errorPage();
+                    }
+                    $trigger = 1;
+                } else {
+                    $value = explode("/", $value);
+                    $imgSmall = $value[2];
+                    $img2 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $imgSmall);
+                    if ($this->img1 && $img2) {
+                        $x2 = imagesx($img2);
+                        $y2 = imagesy($img2);
+                        imagecopyresampled($this->img1, $img2, 20, 0, 0, 0, $x2, $y2, $x2, $y2);
+                    }
+                }
+            }
         }
+        imagepng($this->img1, $path . "/" . $outputFile, 9);
+        header('Location: /camagru/');
+    }
+
+    public function makeUploadedImage($imageName)
+    {
+        $allowed_filetypes = array('.png'); // Допустимые типы файлов
+        $max_filesize = 524288; // Максимальный размер файла в байтах (в данном случае он равен 0.5 Мб).
+        $upload_path = ROOT . "/public/png/"; // Папка, куда будут загружаться файлы .
+        $ext = substr($imageName, strpos($imageName, '.'), strlen($imageName) - 1); // В переменную $ext заносим расширение загруженного файла.
+
+        if (!in_array($ext, $allowed_filetypes)) {
+            ErrorController::errorPage();
+            exit;
+        }
+
+        if (filesize($_FILES['upload_this']['tmp_name']) > $max_filesize) {
+            ErrorController::errorPage();
+            exit;
+        }
+
+        if(!is_writable($upload_path)) {
+            ErrorController::errorPage();
+            exit;
+        }
+// Загружаем фаил в указанную папку.
+        if(!move_uploaded_file($_FILES['upload_this']['tmp_name'],$upload_path . $imageName)) {
+            ErrorController::errorPage();
+            exit;
+        }
+
+        $path = ROOT . "/public/png";
+        $outputFile = md5(uniqid(rand(), 1)) . ".png";
+        $ifp = fopen($path . "/" . $outputFile, 'wb');
+        $encode = file_get_contents($upload_path . $imageName);
+        $encode = base64_encode($encode);
+        unlink($upload_path . $imageName);
+        $trigger = 0;
+        $pathToSticker = ["sticker" => "/png/sigara.png"];//delete
+        foreach ($pathToSticker as $key => $value) {
+            if (!empty($value)) {
+                if (!$trigger) {
+                    $value = explode("/", $value);
+                    fwrite($ifp, base64_decode($encode));
+                    fclose($ifp);
+                    $tmpArray = [$_SESSION['login'], "/png/" . $outputFile];
+                    $this->insertOne($tmpArray);
+                    $imgSmall = $value[2];
+                    $this->img1 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $outputFile);
+                    $img2 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $imgSmall);
+                    if ($this->img1 && $img2) {
+                        $x2 = imagesx($img2);
+                        $y2 = imagesy($img2);
+                        imagecopyresampled($this->img1, $img2, 20, 0, 0, 0, $x2, $y2, $x2, $y2);
+                    } else {
+                        ErrorController::errorPage();
+                    }
+                    $trigger = 1;
+                } else {
+                    $value = explode("/", $value);
+                    $imgSmall = $value[2];
+                    $img2 = imagecreatefrompng($path . DIRECTORY_SEPARATOR . $imgSmall);
+                    if ($this->img1 && $img2) {
+                        $x2 = imagesx($img2);
+                        $y2 = imagesy($img2);
+                        imagecopyresampled($this->img1, $img2, 20, 0, 0, 0, $x2, $y2, $x2, $y2);
+                    }
+                }
+            }
+        }
+        imagepng($this->img1, $path . "/" . $outputFile, 9);
+        header('Location: /camagru/');
     }
 
     public function showAllPhoto()
@@ -52,8 +143,8 @@ class Other extends Model {
                     . "<div id='$tmpCounter' class=\"container_tmp hide\">"
                     . "<div class=\"row center-align\">"
                     . "<div class=\"col s12 grey darken-4\" style='border-radius: 5px'>"
-                    . "<div style='padding-bottom: 50px'>"
-                    . "<img style='margin-top: 10px' src=" ."\"". $key['src'] . "\">"
+                    . "<div style='padding-bottom: 50px;'>"
+                    . "<img style='margin-top: 10px; width: 300px' width='200' src=" ."\"". $key['src'] . "\">"
                     . "<figcaption>" . "<a id='$aSrc' class='content_img' onclick='addComment(this.id)'>Comments</a>" . "<p id='$pSrc' align=right class='p_like_img'>$likes</p>"
                     . "<img id=\"$src\" src=" ."\"". "/png/like.png" . "\" class='like_img' onclick=\"addLike(this.id)\">"
                     . "</figcaption>"
@@ -68,7 +159,7 @@ class Other extends Model {
                     . "<div class=\"row center-align\">"
                     . "<div class=\"col s12 grey darken-4\">"
                     . "<div style='padding-bottom: 50px'>"
-                    . "<img style='margin-top: 10px' src=" ."\"". $key['src'] . "\">"
+                    . "<img style='margin-top: 10px; width: 300px' src=" ."\"". $key['src'] . "\">"
                     . "<figcaption>" . "<a id='$aSrc' class='content_img' onclick='addComment(this.id)'>Comments</a>" . "<p id='$pSrc' align=right class='p_like_img'>$likes</p>"
                     . "<img id=\"$src\" src=" ."\"". "/png/like.png" . "\" class='like_img' onclick=\"addLike(this.id)\">"
                     . "</figcaption>"
@@ -100,7 +191,7 @@ class Other extends Model {
                     . "<div class=\"row center-align\">"
                     . "<div class=\"col s12 grey darken-4\">"
                     . "<div style='padding-bottom: 50px'>"
-                    . "<img style='margin-top: 10px' src=" ."\"". $key['src'] . "\">"
+                    . "<img style='margin-top: 10px; width:300px' src=" ."\"". $key['src'] . "\">"
                     . "<figcaption>" . "<a id='$aSrc' class='content_img' onclick='showComment(this.id)'>Comments</a>" . "<p id='$pSrc' align=right class='p_like_img'>$likes</p>"
                     . "<img id=\"$src\" src=" ."\"". "/png/like.png" . "\" class='like_img'>"
                     . "</figcaption>"

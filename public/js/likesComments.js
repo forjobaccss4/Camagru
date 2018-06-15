@@ -28,7 +28,7 @@ function addComment(id) {
     newDiv.id = newCommentsBlock;
     newDiv.style.resize = "none";
     newDiv.style.overflow = "auto";
-    newDiv.style.width = "320px";
+    newDiv.style.width = "300px";
     newDiv.style.height = "350px";
     newDiv.style.display = "flex";
     newDiv.style.flexDirection = "column";
@@ -40,7 +40,7 @@ function addComment(id) {
     var divBorder =  document.createElement("div");
     divBorder.style.overflowX = "hidden";
     divBorder.style.wordWrap = "break-word";
-    divBorder.style.width = "310px";
+    divBorder.style.width = "290px";
     divBorder.style.lineHeight = "15px";
     divBorder.style.height = "250px";
     divBorder.style.border = "1px #A4a195 solid";
@@ -50,7 +50,7 @@ function addComment(id) {
     newTextArea.id = newCommentsMessage;
     newTextArea.style.resize = "none";
     newTextArea.style.height = "70px";
-    newTextArea.style.width = "315px";
+    newTextArea.style.width = "295px";
     newTextArea.style.backgroundColor = "grey";
     newTextArea.style.border = "1px black solid";
     newTextArea.style.borderRadius = "5px";
@@ -128,7 +128,7 @@ function showComment(id) {
     newDiv.id = newCommentsBlock;
     newDiv.style.resize = "none";
     newDiv.style.overflow = "auto";
-    newDiv.style.width = "320px";
+    newDiv.style.width = "300px";
     newDiv.style.height = "320px";
     newDiv.style.display = "flex";
     newDiv.style.flexDirection = "column";
@@ -141,7 +141,7 @@ function showComment(id) {
     divBorder.style.overflowX = "hidden";
     divBorder.style.wordWrap = "break-word";
     divBorder.style.marginTop = "10px";
-    divBorder.style.width = "310px";
+    divBorder.style.width = "290px";
     divBorder.style.lineHeight = "15px";
     divBorder.style.height = "250px";
     divBorder.style.border = "1px #A4a195 solid";
