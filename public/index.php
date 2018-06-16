@@ -1,6 +1,7 @@
 <?php
 
 use application\core\Router;
+use application\core\Db;
 
 define('WWW', __DIR__);
 define('CORE', dirname(__DIR__) . '/application/core');
@@ -8,7 +9,6 @@ define('ROOT', dirname(__DIR__));
 define('APP', dirname(__DIR__) . '/application');
 define('LAYOUT', 'default');
 
-require '../application/lib/Dev.php';
 
 spl_autoload_register(function ($class) {
     $path = ROOT . '/' . str_replace('\\', '/', $class) . '.php';
@@ -24,5 +24,5 @@ Router::add('^authorization/activation/.+?$', ['controller' => 'Authorization', 
 //default routes
 Router::add('^$', ['controller' => 'Main', 'action' => 'index']);
 Router::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
-
+Db::instance();
 Router::dispatch($query);
