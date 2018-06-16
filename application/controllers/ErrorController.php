@@ -7,6 +7,17 @@ use application\models\Error;
 
 class ErrorController extends AppController {
 
+
+    public function __construct($route) {
+        parent::__construct($route);
+        if (isset($_SESSION['login'])) {
+            $this->user = $_SESSION['login'];
+            $this->button = "<li><a href=\"/camagru/logout\">Выйти</a></li>";
+        }else {
+            $this->user = "Гость";
+        }
+    }
+
     public static function errorPage()
     {
         $route = ['controller' => "Error", 'action' => 'error'];
@@ -16,7 +27,11 @@ class ErrorController extends AppController {
         $myObj->getView();
     }
 
-    public static function whooopsAction($route, $messages) {
+    public static function whooopsAction($route = '', $messages = '') {
+        if (empty($route) || empty($messages)) {
+            ErrorController::errorPage();
+            exit;
+        }
         $myObj = new self($route);
         $myObj->view = "whooops";
         if (!empty($messages) && $messages != "1") {
@@ -28,7 +43,11 @@ class ErrorController extends AppController {
         $myObj->linkToImage = $error->getRandImage();
         $myObj->getView();
     }
-    public static function whooopsRegisterAction($route, $messages) {
+    public static function whooopsRegisterAction($route = '', $messages = '') {
+        if (empty($route) || empty($messages)) {
+            ErrorController::errorPage();
+            exit;
+        }
         $myObj = new self($route);
         $myObj->view = "whooops";
         if (count($messages) == 2) {

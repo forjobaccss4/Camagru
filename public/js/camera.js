@@ -49,21 +49,38 @@ function camera() {
 function chooseSticker(id) {
     id = id.slice(0, -1);
     var variants = document.getElementById('createFrame');
-    var newFrame = document.createElement("img");
-    var first = variants.firstChild;
-    newFrame.src = id;
-    newFrame.style.width = "350px";
-    newFrame.style.height = "250px";
-    newFrame.style.position = "absolute";
-    variants.insertBefore(newFrame, first);
     document.getElementById("snapshot").classList.remove("disabled");
+    if (id === "/png/empty.png") {
+        document.getElementById("hiddenInput0").value = "/png/really_empty.png";
+    }
     if (id === "/png/sigara.png") {
+        var newFrame = document.createElement("img");
+        var first = variants.firstChild;
+        newFrame.src = id;
+        newFrame.style.width = "350px";
+        newFrame.style.height = "250px";
+        newFrame.style.position = "absolute";
+        variants.insertBefore(newFrame, first);
         document.getElementById("hiddenInput1").value = id;
     }
     if (id === "/png/glasses.png") {
+            var newFrame1 = document.createElement("img");
+            var first1 = variants.firstChild;
+            newFrame1.src = id;
+            newFrame1.style.width = "350px";
+            newFrame1.style.height = "250px";
+            newFrame1.style.position = "absolute";
+            variants.insertBefore(newFrame1, first1);
         document.getElementById("hiddenInput2").value = id;
     }
     if (id === "/png/snoop.png") {
+            var newFrame2 = document.createElement("img");
+            var first2 = variants.firstChild;
+            newFrame2.src = id;
+            newFrame2.style.width = "350px";
+            newFrame2.style.height = "250px";
+            newFrame2.style.position = "absolute";
+            variants.insertBefore(newFrame2, first2);
         document.getElementById("hiddenInput3").value = id;
     }
 }

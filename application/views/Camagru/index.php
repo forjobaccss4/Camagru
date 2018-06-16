@@ -48,6 +48,7 @@
 <div id="needShow1" class="container_tmp hide">
     <div class="row center-align">
         <div id="chooseFrame" class="col s12 black center-align">
+            <img id="/png/empty.png1" src="/png/empty.png" class="choose_img" onclick="chooseSticker(this.id)">
             <img id="/png/sigara.png1" src="/png/sigara.png" class="choose_img" onclick="chooseSticker(this.id)">
             <img id="/png/glasses.png1" src="/png/glasses.png" class="choose_img" onclick="chooseSticker(this.id)">
             <img id="/png/snoop.png1" src="/png/snoop.png" class="choose_img" onclick="chooseSticker(this.id)">
@@ -59,6 +60,7 @@
     <div id="needShow3" class="container_tmp hide">
         <div class="row center-align">
             <div id="chooseFrame" class="col s12 black center-align">
+                <img id="/png/empty.png" src="/png/empty.png" class="choose_img" onclick="chooseStickerUploaded(this.id)">
                 <img id="/png/sigara.png" src="/png/sigara.png" class="choose_img" onclick="chooseStickerUploaded(this.id)">
                 <img id="/png/glasses.png" src="/png/glasses.png" class="choose_img" onclick="chooseStickerUploaded(this.id)">
                 <img id="/png/snoop.png" src="/png/snoop.png" class="choose_img" onclick="chooseStickerUploaded(this.id)">
@@ -84,6 +86,7 @@
         <div id="button" class="hide">
             <form method="post" action="/camagru/image">
                 <input id="hiddenInput" name="baseImage" class="hide">
+                <input id="hiddenInput0" name="stickerId0" class="hide">
                 <input id="hiddenInput1" name="stickerId" class="hide">
                 <input id="hiddenInput2" name="stickerId1" class="hide">
                 <input id="hiddenInput3" name="stickerId2" class="hide">
@@ -110,6 +113,7 @@
                 <input id="hiddenInput5" name="stickerId3" class="hide">
                 <input id="hiddenInput6" name="stickerId4" class="hide">
                 <input id="hiddenInput7" name="stickerId5" class="hide">
+                <input id="hiddenInput8" name="stickerId6" class="hide">
                 <input id="file" name="file" type="file" accept="image/png">
             </form>
         </div>

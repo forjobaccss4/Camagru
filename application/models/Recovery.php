@@ -14,6 +14,8 @@ use application\controllers\ErrorController;
 
 class Recovery extends Model {
 
+    private $route = ['controller' => 'Error', 'action' => 'whooops'];
+
     public function sendEmailToRecoverPass($mail) {
         $this->table = 'user';
         if (count($foundMail = $this->findOne($mail, "email")) == 1) {
@@ -43,7 +45,7 @@ class Recovery extends Model {
         $from_name = "Recover Password";
         $from_mail = "vsarapin@student.unit.ua";
         $mail_subject = "Remember password this time";
-        $mail_message = "Перейдите по этой ссылке для смены пароля http://10.111.3.5:8080/recovery/restore/{$this->hash}";
+        $mail_message = "Перейдите по этой ссылке для смены пароля http://localhost:8080/recovery/restore/{$this->hash}";
 
         $subject_preferences = array(
             "input-charset" => $encoding,
@@ -72,14 +74,18 @@ class Recovery extends Model {
 
     }
 
-    public function changePass($url, $password, $newPassword) { //Нужно доделать
+    public function changePass($url, $password, $newPassword) {
         $this->table = 'user';
         $hash = explode('/', $url);
-        $password = crypt(trim(htmlspecialchars(stripslashes($password))), "ZqbHp9lb");
-        $newPassword = crypt(trim(htmlspecialchars(stripslashes($newPassword))), "ZqbHp9lb");
-        if (!hash_equals($password, $newPassword)) {
-            ErrorController::errorPage();
+        if ($password != $newPassword) {
+            ErrorController::whooopsAction($this->route, "Пароли не совпадают!");
+            exit;
         }
+        if (!preg_match("/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $password)) {
+            ErrorController::whooopsAction($this->route, "Пароль должен состоять минимум" . "<br>" . " из 8 символов, одной цифры, одной буквы" . "<br>" . "в верхнем регистре и одной в нижнем");
+            exit;
+        }
+        $newPassword = password_hash($newPassword, PASSWORD_DEFAULT);
         $newPassword = "'" . $newPassword . "'";
         if ($findHash = $this->findOne($hash[3], 'hash')) {
             $this->updateOne($this->table, 'password', $newPassword, 'id', $findHash[0]['id']);

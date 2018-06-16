@@ -1,3 +1,8 @@
+if (document.getElementById("user").innerHTML === "Гость") {
+    document.getElementById("hide-on-guest").classList.add("hide");
+    document.getElementById("hide-on-guest-too").classList.add("hide");
+}
+
 function addLike(pathToFile) {
     var xhr = new XMLHttpRequest();
     var pSrc = pathToFile + "1";

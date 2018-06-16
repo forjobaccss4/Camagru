@@ -11,15 +11,30 @@ video {
 }
 .container {
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
 }
 .container_tmp {
     position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
 }
 .content_img {
@@ -46,7 +61,11 @@ video {
 .connectionPopup {
     position: absolute;
     display: none;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     font-size: 25px;
     width: 400px;
@@ -56,16 +75,26 @@ video {
     border-color: rgba(0, 231, 0, 0.8);
     background: rgba(0, 66, 0, 0.85);
     text-shadow: 0 0 10px rgba(0, 231, 0, 1);
+    -webkit-box-shadow: 0 0 20px rgba(0, 231, 0, 0.7);
     box-shadow: 0 0 20px rgba(0, 231, 0, 0.7);
+    -webkit-animation: scaleTable, loadingblink ease-in-out infinite;
     animation: scaleTable, loadingblink ease-in-out infinite;
+    -webkit-animation-duration: 0.6s, 1s;
     animation-duration: 0.6s, 1s;
+    -webkit-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
 }
 .confirmPopup {
     position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     text-align: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     font-size: 25px;
     width: 400px;
@@ -75,9 +104,13 @@ video {
     border-color: rgba(0, 231, 0, 0.8);
     background: rgba(0, 66, 0, 0.85);
     text-shadow: 0 0 10px rgba(0, 231, 0, 1);
+    -webkit-box-shadow: 0 0 20px rgba(0, 231, 0, 0.7);
     box-shadow: 0 0 20px rgba(0, 231, 0, 0.7);
+    -webkit-animation: scaleTable, loadingblink ease-in-out infinite;
     animation: scaleTable, loadingblink ease-in-out infinite;
+    -webkit-animation-duration: 0.6s, 1s;
     animation-duration: 0.6s, 1s;
+    -webkit-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
 }
 .msgbox {
@@ -86,11 +119,16 @@ video {
     color: rgba(0, 231, 0, 1);
     text-shadow: 0 0 10px rgba(0, 231, 0, 1);
     display: none;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     border: 7px solid;
     border-color: rgba(102, 255, 0, 0.8);
     background: rgba(45, 81, 45, 0.85);
+    -webkit-box-shadow: 0 0 20px rgba(102, 255, 0, 0.5);
     box-shadow: 0 0 20px rgba(102, 255, 0, 0.5);
     width: 300px;
     height: auto;
@@ -101,8 +139,11 @@ video {
     line-height: 40px;
     letter-spacing: initial;
     overflow: hidden;
+    -webkit-animation: scaleTable, loadingblink ease-in-out infinite;
     animation: scaleTable, loadingblink ease-in-out infinite;
+    -webkit-animation-duration: 0.6s;
     animation-duration: 0.6s;
+    -webkit-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
 }
 .buttonBlue {
@@ -110,7 +151,11 @@ video {
     text-decoration: none;
     position: absolute;
     display: none;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     font-size: 16px;
     text-align: center;
@@ -123,12 +168,17 @@ video {
     border-radius: 50%;
     background: rgba(0, 0, 131, 0.85);
     text-shadow: 0 0 10px rgba(0, 0, 255, 1);
+    -webkit-box-shadow: 0 0 20px rgba(0, 0, 255, 0.7);
     box-shadow: 0 0 20px rgba(0, 0, 255, 0.7);
 }
 .error {
     position: absolute;
     display: none;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     font-size: 25px;
     text-align: center;
@@ -140,15 +190,23 @@ video {
     border-color: rgba(233, 0, 0, 0.8);
     background: rgba(142, 0, 0, 0.85);
     text-shadow: 0 0 10px rgba(233, 0, 0, 1);
+    -webkit-box-shadow: 0 0 20px rgba(233, 0, 0, 0.7);
     box-shadow: 0 0 20px rgba(233, 0, 0, 0.7);
+    -webkit-animation: scaleTable, loadingblinkError ease-in-out infinite;
     animation: scaleTable, loadingblinkError ease-in-out infinite;
+    -webkit-animation-duration: 0.6s, 1s;
     animation-duration: 0.6s, 1s;
+    -webkit-animation-fill-mode:forwards;
     animation-fill-mode:forwards;
 }
 .wrongRegisterData {
     position: absolute;
     display: none;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
     justify-content: center;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
     align-items: center;
     font-size: 25px;
     text-align: center;
@@ -160,8 +218,11 @@ video {
     border-color: rgba(233, 0, 0, 0.8);
     background: rgba(142, 0, 0, 0.85);
     text-shadow: 0 0 10px rgba(233, 0, 0, 1);
+    -webkit-box-shadow: 0 0 20px rgba(233, 0, 0, 0.7);
     box-shadow: 0 0 20px rgba(233, 0, 0, 0.7);
+    -webkit-animation: scaleTable,  ease-in-out infinite;
     animation: scaleTable,  ease-in-out infinite;
+    -webkit-animation-duration: 0.6s;
     animation-duration: 0.6s;
 }
 .closeButton {
@@ -182,32 +243,90 @@ video {
 .closeButton:hover {
     background: none;
 }
-@keyframes scaleTable {
+@-webkit-keyframes scaleTable {
     0% {
+        -webkit-transform:scale(0,0);
         transform:scale(0,0);
     }
     1% {
+        -webkit-transform:scale(0,0.01);
         transform:scale(0,0.01);
     }
     60% {
+        -webkit-transform:scale(1,0.01);
         transform:scale(1,0.01);
     }
     100% {
+        -webkit-transform:scale(1,1);
         transform:scale(1,1);
+    }
+}
+@keyframes scaleTable {
+    0% {
+        -webkit-transform:scale(0,0);
+        transform:scale(0,0);
+    }
+    1% {
+        -webkit-transform:scale(0,0.01);
+        transform:scale(0,0.01);
+    }
+    60% {
+        -webkit-transform:scale(1,0.01);
+        transform:scale(1,0.01);
+    }
+    100% {
+        -webkit-transform:scale(1,1);
+        transform:scale(1,1);
+    }
+}
+@-webkit-keyframes scaleTableReverse {
+    0% {
+        -webkit-transform:scale(1,1);
+        transform:scale(1,1);
+    }
+    60% {
+        -webkit-transform:scale(1,0.01);
+        transform:scale(1,0.01);
+    }
+    90% {
+        -webkit-transform:scale(0,0.01);
+        transform:scale(0,0.01);
+    }
+    100% {
+        -webkit-transform:scale(0,0);
+        transform:scale(0,0);
     }
 }
 @keyframes scaleTableReverse {
     0% {
+        -webkit-transform:scale(1,1);
         transform:scale(1,1);
     }
     60% {
+        -webkit-transform:scale(1,0.01);
         transform:scale(1,0.01);
     }
     90% {
+        -webkit-transform:scale(0,0.01);
         transform:scale(0,0.01);
     }
     100% {
+        -webkit-transform:scale(0,0);
         transform:scale(0,0);
+    }
+}
+@-webkit-keyframes loadingblink {
+    0% {
+        color:rgba(0, 231, 0, 0.6);
+        text-shadow:0 0 6px rgba(0, 231, 0, 0.6);
+    }
+    50% {
+        color:rgba(0, 231, 0, 1);
+        text-shadow:0 0 10px rgba(0, 231, 0, 1);
+    }
+    100% {
+        color:rgba(0, 231, 0, 0.6);
+        text-shadow:0 0 6px rgba(0, 231, 0, 0.6);
     }
 }
 @keyframes loadingblink {
@@ -224,6 +343,20 @@ video {
         text-shadow:0 0 6px rgba(0, 231, 0, 0.6);
     }
 }
+@-webkit-keyframes loadingblinkError {
+    0% {
+        color:rgba(233, 0, 0, 0.6);
+        text-shadow:0 0 6px rgba(233, 0, 0, 0.6);
+    }
+    50% {
+        color:rgba(233, 0, 0, 1);
+        text-shadow:0 0 10px rgba(233, 0, 0, 1);
+    }
+    100% {
+        color:rgba(233, 0, 0, 0.6);
+        text-shadow:0 0 6px rgba(233, 0, 0, 0.6);
+    }
+}
 @keyframes loadingblinkError {
     0% {
         color:rgba(233, 0, 0, 0.6);
@@ -238,35 +371,75 @@ video {
         text-shadow:0 0 6px rgba(233, 0, 0, 0.6);
     }
 }
+@-webkit-keyframes translateLeft {
+    100% {
+        -webkit-transform: translate(-100%, 0%);
+        transform: translate(-100%, 0%);
+    }
+}
 @keyframes translateLeft {
     100% {
+        -webkit-transform: translate(-100%, 0%);
         transform: translate(-100%, 0%);
+    }
+}
+@-webkit-keyframes translateRight {
+    100% {
+        -webkit-transform: translate(100%, 0%);
+        transform: translate(100%, 0%);
     }
 }
 @keyframes translateRight {
     100% {
+        -webkit-transform: translate(100%, 0%);
         transform: translate(100%, 0%);
     }
 }
+@-webkit-keyframes shake {
+    10%, 90% {
+        -webkit-transform: translate3d(-1px, 0, 0);
+        transform: translate3d(-1px, 0, 0);
+    }
+
+    20%, 80% {
+        -webkit-transform: translate3d(2px, 0, 0);
+        transform: translate3d(2px, 0, 0);
+    }
+
+    30%, 50%, 70% {
+        -webkit-transform: translate3d(-4px, 0, 0);
+        transform: translate3d(-4px, 0, 0);
+    }
+
+    40%, 60% {
+        -webkit-transform: translate3d(4px, 0, 0);
+        transform: translate3d(4px, 0, 0);
+    }
+}
 @keyframes shake {
-     10%, 90% {
-         transform: translate3d(-1px, 0, 0);
-     }
+    10%, 90% {
+        -webkit-transform: translate3d(-1px, 0, 0);
+        transform: translate3d(-1px, 0, 0);
+    }
 
-     20%, 80% {
-         transform: translate3d(2px, 0, 0);
-     }
+    20%, 80% {
+        -webkit-transform: translate3d(2px, 0, 0);
+        transform: translate3d(2px, 0, 0);
+    }
 
-     30%, 50%, 70% {
-         transform: translate3d(-4px, 0, 0);
-     }
+    30%, 50%, 70% {
+        -webkit-transform: translate3d(-4px, 0, 0);
+        transform: translate3d(-4px, 0, 0);
+    }
 
-     40%, 60% {
-         transform: translate3d(4px, 0, 0);
-     }
- }
+    40%, 60% {
+        -webkit-transform: translate3d(4px, 0, 0);
+        transform: translate3d(4px, 0, 0);
+    }
+}
 
 .apply-shake {
+    -webkit-animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
 }
 #footer {
@@ -284,4 +457,5 @@ video {
     height: 100px;
     position: relative;
     cursor: pointer;
+    background-color: white;
 }

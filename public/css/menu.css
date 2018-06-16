@@ -21,8 +21,6 @@
     background: #212121;
     font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
     -webkit-transition: all 150ms linear;
-    -moz-transition: all 150ms linear;
-    -ms-transition: all 150ms linear;
     -o-transition: all 150ms linear;
     transition: all 150ms linear;
 }
@@ -36,8 +34,6 @@
     -o-text-shadow: 0 0 2px white;
     -ms-text-shadow: 0 0 2px white;
     -webkit-transition: all 150ms linear;
-    -moz-transition: all 150ms linear;
-    -ms-transition: all 150ms linear;
     -o-transition: all 150ms linear;
     transition: all 150ms linear;
 }
@@ -47,8 +43,6 @@
     color: #8ABF29;
     background-color: #2d2f33;
     -webkit-transition: all 50ms linear;
-    -moz-transition: all 50ms linear;
-    -ms-transition: all 50ms linear;
     -o-transition: all 50ms linear;
     transition: all 50ms linear;
 }
@@ -108,8 +102,6 @@
     background: #212121;
     font-family:"HelveticaNeue","Helvetica Neue",Helvetica,Arial,sans-serif;
     -webkit-transition: all 150ms linear;
-    -moz-transition: all 150ms linear;
-    -ms-transition: all 150ms linear;
     -o-transition: all 150ms linear;
     transition: all 150ms linear;
 }
@@ -122,8 +114,6 @@
     -o-text-shadow: 0 0 2px white;
     -ms-text-shadow: 0 0 2px white;
     -webkit-transition: all 150ms linear;
-    -moz-transition: all 150ms linear;
-    -ms-transition: all 150ms linear;
     -o-transition: all 150ms linear;
     transition: all 150ms linear;
 }
@@ -142,7 +132,12 @@
 
 .leftbar {
     position: absolute;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -ms-flex-direction: column;
     flex-direction: column;
     text-align: center;
     height: 100%;
@@ -152,6 +147,8 @@
     left: 0;
     background-color: #111;
     overflow-x: hidden;
+    -webkit-transition: 0.5s;
+    -o-transition: 0.5s;
     transition: 0.5s;
     padding-top: 60px;
 }
@@ -163,6 +160,8 @@
     font-size: 25px;
     color: #818181;
     display: block;
+    -webkit-transition: 0.3s;
+    -o-transition: 0.3s;
     transition: 0.3s;
 }
 
@@ -179,6 +178,8 @@
 
 #main {
     position: relative;
+    -webkit-transition: margin-left .3s;
+    -o-transition: margin-left .3s;
     transition: margin-left .3s;
     padding: 16px;
 }

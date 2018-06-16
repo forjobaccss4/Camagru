@@ -8,6 +8,16 @@ use application\models\Recovery;
 
 class RecoveryController extends AppController {
 
+    public function __construct($route) {
+        parent::__construct($route);
+        session_start();
+        if (isset($_SESSION['login'])) {
+            $this->user = $_SESSION['login'];
+            $this->button = "<li><a href=\"/camagru/logout\">Выйти</a></li>";
+        }else {
+            $this->user = "Гость";
+        }
+    }
 
     public function indexAction() {
         if (!empty($_POST['login'])) {

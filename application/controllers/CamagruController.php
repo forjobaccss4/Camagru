@@ -45,51 +45,63 @@ class CamagruController extends AppController {
     }
 
     public function loginAction() {
-        $model = new Camagru($_POST);
-        $model->changeLogin();
+        if (empty($_SESSION['login'])){
+            ErrorController::errorPage();
+            exit;
+        }else {
+            $model = new Camagru($_POST);
+            $model->changeLogin();
+        }
 
     }
     public function passwordAction() {
-        $model = new Camagru($_POST);
-        $model->changePassword();
+        if (empty($_SESSION['login'])){
+            ErrorController::errorPage();
+            exit;
+        }else {
+            $model = new Camagru($_POST);
+            $model->changePassword();
+        }
     }
     public function nameAction() {
-        $model = new Camagru($_POST);
-        $model->changeName();
+        if (empty($_SESSION['login'])){
+            ErrorController::errorPage();
+            exit;
+        }else {
+            $model = new Camagru($_POST);
+            $model->changeName();
+        }
     }
     public function mailAction() {
-        $model = new Camagru($_POST);
-        $model->changeMail();
+        if (empty($_SESSION['login'])){
+            ErrorController::errorPage();
+            exit;
+        }else {
+            $model = new Camagru($_POST);
+            $model->changeMail();
+        }
     }
 
     public function imageAction() {
-        if (empty($_POST['stickerId']) && empty($_POST['stickerId1']) && empty($_POST['stickerId2']) ) {
+        if (empty($_POST['stickerId0']) && empty($_POST['stickerId']) && empty($_POST['stickerId1']) && empty($_POST['stickerId2']) ) {
             ErrorController::errorPage();
             exit;
         }
         $model = new Other();
-        $postArray = ["sticker" => $_POST['stickerId'], "sticker1" => $_POST['stickerId1'], "sticker2" => $_POST['stickerId2']];
+        $postArray = ["sticker0" => $_POST['stickerId0'], "sticker" => $_POST['stickerId'], "sticker1" => $_POST['stickerId1'], "sticker2" => $_POST['stickerId2']];
         $model->makeImage($_POST['baseImage'], $postArray);
     }
 
     public function uploadAction() {
-        if (empty($_POST['stickerId3']) && empty($_POST['stickerId4']) && empty($_POST['stickerId5']) ) {
+        if (empty($_POST['stickerId3']) && empty($_POST['stickerId4']) && empty($_POST['stickerId5']) && empty($_POST['stickerId6'])) {
             ErrorController::errorPage();
             exit;
         }
         $model = new Other();
-        $postArray = ["sticker" => $_POST['stickerId3'], "sticker1" => $_POST['stickerId4'], "sticker2" => $_POST['stickerId5']];
+        $postArray = ["sticker6" => $_POST['stickerId6'], "sticker_empty" => $_POST['stickerId3'], "sticker1" => $_POST['stickerId4'], "sticker2" => $_POST['stickerId5']];
         $model->makeImage($_POST['baseImage1'], $postArray);
     }
 
-    public function uploadedImageAction(){
-        if (!count($_FILES)) {
-            ErrorController::errorPage();
-            exit;
-        }
-        $model = new Other();
-        $model->makeUploadedImage($_FILES['upload_this']['name']);
-    }
 
     public function likesAction() {
         if (empty($_POST['path'])){

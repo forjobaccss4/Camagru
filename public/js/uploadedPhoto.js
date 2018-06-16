@@ -5,22 +5,39 @@ document.getElementById('snapshot1').onclick = function() {
 
 function chooseStickerUploaded(id) {
     var variants = document.getElementById('firstElementHere');
-    var newFrame = document.createElement("img");
-    var first = variants.firstChild;
-    newFrame.src = id;
-    newFrame.style.width = "300px";
-    newFrame.style.height = "220px";
-    newFrame.style.position = "absolute";
-    variants.insertBefore(newFrame, first);
     document.getElementById("snapshot1").classList.remove("disabled");
-    if (id === "/png/sigara.png") {
-        document.getElementById("hiddenInput5").value = id;
+    if (id === "/png/empty.png") {
+        document.getElementById("hiddenInput5").value = "/png/really_empty.png";
     }
-    if (id === "/png/glasses.png") {
+    if (id === "/png/sigara.png") {
+        var newFrame = document.createElement("img");
+        var first = variants.firstChild;
+        newFrame.src = id;
+        newFrame.style.width = "300px";
+        newFrame.style.height = "220px";
+        newFrame.style.position = "absolute";
+        variants.insertBefore(newFrame, first);
         document.getElementById("hiddenInput6").value = id;
     }
-    if (id === "/png/snoop.png") {
+    if (id === "/png/glasses.png") {
+        var newFrame1 = document.createElement("img");
+        var first1 = variants.firstChild;
+        newFrame1.src = id;
+        newFrame1.style.width = "300px";
+        newFrame1.style.height = "220px";
+        newFrame1.style.position = "absolute";
+        variants.insertBefore(newFrame1, first1);
         document.getElementById("hiddenInput7").value = id;
+    }
+    if (id === "/png/snoop.png") {
+        var newFrame2 = document.createElement("img");
+        var first2 = variants.firstChild;
+        newFrame2.src = id;
+        newFrame2.style.width = "300px";
+        newFrame2.style.height = "220px";
+        newFrame2.style.position = "absolute";
+        variants.insertBefore(newFrame2, first2);
+        document.getElementById("hiddenInput8").value = id;
     }
 }
 

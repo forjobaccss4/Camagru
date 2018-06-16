@@ -1,5 +1,7 @@
 html, body {
     margin: 0;
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
 }
 
@@ -30,6 +32,8 @@ body {
 }
 
 #wrapper, label, #arrow, button span {
+    -webkit-transition: all .5s cubic-bezier(.6, 0, .4, 1);
+    -o-transition: all .5s cubic-bezier(.6, 0, .4, 1);
     transition: all .5s cubic-bezier(.6, 0, .4, 1);
 }
 
@@ -46,6 +50,7 @@ body {
 }
 
 #signin:checked ~ button span {
+    -webkit-transform: translate3d(0, -72px, 0);
     transform: translate3d(0, -72px, 0);
 }
 
@@ -58,6 +63,7 @@ body {
 }
 
 #signup:checked ~ button span {
+    -webkit-transform: translate3d(0, -144px, 0);
     transform: translate3d(0, -144px, 0);
 }
 
@@ -70,6 +76,7 @@ body {
 }
 
 #reset:checked ~ button span {
+    -webkit-transform: translate3d(0, -216px, 0);
     transform: translate3d(0, -216px, 0);
 }
 
@@ -97,6 +104,8 @@ label {
 }
 
 label:hover {
+    -webkit-transition: all .3s cubic-bezier(.6, 0, .4, 1);
+    -o-transition: all .3s cubic-bezier(.6, 0, .4, 1);
     transition: all .3s cubic-bezier(.6, 0, .4, 1);
     opacity: 1;
 }
@@ -124,6 +133,8 @@ input[type=password] {
     width: 99.5%;
     margin-bottom: 10px;
     text-indent: 20px;
+    -webkit-transition: all .2s ease-in-out;
+    -o-transition: all .2s ease-in-out;
     transition: all .2s ease-in-out;
     opacity: .7;
 }
@@ -140,6 +151,8 @@ button {
     width: 100%;
     margin-bottom: 10px;
     overflow: hidden;
+    -webkit-transition: all .3s cubic-bezier(.6, 0, .4, 1);
+    -o-transition: all .3s cubic-bezier(.6, 0, .4, 1);
     transition: all .3s cubic-bezier(.6, 0, .4, 1);
 }
 
@@ -148,6 +161,7 @@ button span {
     line-height: 72px;
     position: relative;
     top: -2px;
+    -webkit-transform: translate3d(0, 0, 0);
     transform: translate3d(0, 0, 0);
 }
 
@@ -165,4 +179,3 @@ button:hover {
     left: 32px;
     opacity: .7;
 }
-

@@ -16,7 +16,7 @@
                 <div class="col s12 offset-s3 m12 l12">
                     <ul>
                         <li>
-                            <a href="#" id="" class="col s12"><?=$user?></a>
+                            <a href="#" id="user" class="col s12"><?=$user?></a>
                             <ul class="left">
                                 <li><a href="/camagru">Галерея</a></li>
                                 <li><a href="/camagru/cabinet">Личный кабинет</a></li>
@@ -91,6 +91,7 @@
         <button id="notification" type="submit" class="button-success pure-button pure-button-primary pure-input-1" onclick="removeNotifications()"></button>
     </div>
 </div>
+<br><br><br><br><br>
 <script src="/js/matrixBackground.js"></script>
 <script src="/js/changeUserDataPage.js"></script>
 <script src="/js/notifications.js"></script>

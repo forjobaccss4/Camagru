@@ -1,18 +1,26 @@
 <body style="background-color: black">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=0.7">
     <link rel="stylesheet" href="../../../css/styles.css">
     <link rel="stylesheet" href="../../../css/menu.css">
     <link rel="stylesheet" href="../../../css/authorization.css">
 </head>
 <div class="container">
     <canvas id="matrix"></canvas>
-    <nav id="primary_nav_wrap" style="position:absolute; top: 0;">
-        <ul>
-            <?=$logout?>
-            <li>asasd</li>
+    <nav id="primary_nav_wrap" style="position:absolute; top: 0; left: 0px;">
+        <ul style="list-style-type: none">
+            <li>
+                <a href="#" id="user" class="col s12"><?=$user?></a>
+                <ul class="left" style="list-style-type: none">
+                    <li><a href="/camagru">Галерея</a></li>
+                    <li><a href="/authorization">Авторизация</a></li>
+                    <li id="myCabinet"><a href="/camagru/cabinet">Личный кабинет</a></li>
+                    <?=$logout?>
+                </ul>
+            </li>
         </ul>
     </nav>
-    <div id="forLoginPage" style="display: flex; position: absolute">
+    <div id="forLoginPage" style="display: flex; position: absolute;">
     <form name="authorization_form" method="post" action="/authorization">
         <input checked="" id="signin" name="action" type="radio" value="signin" onclick="getNameOfField(this.id)">
         <label for="signin">Sign in</label>

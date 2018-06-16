@@ -29,13 +29,13 @@ class Authorization extends Model
         if (($checkLogin = $this->checkLoginRegular($this->login)) === false) {
             array_push($this->errorArray, $this->loginMessage);
         }
-        $this->password = crypt(trim(htmlspecialchars(stripslashes($password))), "ZqbHp9lb");
-        $this->repassword = crypt(trim(htmlspecialchars(stripslashes($repassword))), "ZqbHp9lb");
-        if (!hash_equals($this->password, $this->repassword))
+        if ($password !=  $repassword)
             array_push($this->errorArray, "Пароли не совпадают!");
         if (!preg_match("/(?=^.{8,}$)((?=.*\d)|(?=.*\W+))(?![.\n])(?=.*[A-Z])(?=.*[a-z]).*$/", $password)) {
             array_push($this->errorArray,"Пароль должен состоять минимум" . "<br>" . " из 8 символов, одной цифры, одной буквы" . "<br>" . "в верхнем регистре и одной в нижнем");
         }
+        $this->password = password_hash($password, PASSWORD_DEFAULT);
+        $this->repassword = password_hash($repassword, PASSWORD_DEFAULT);
         $this->name = trim(htmlspecialchars(stripslashes($name)));
         if (filter_var($email, FILTER_VALIDATE_EMAIL))
             $this->email = $email;
@@ -99,7 +99,7 @@ class Authorization extends Model
         $from_name = "Registration for defence";
         $from_mail = "vsarapin@student.unit.ua";
         $mail_subject = "Confirm Camagru Registration";
-        $mail_message = "Перейдите по этой ссылке для подтверждения регистрации http://10.111.3.5:8080/authorization/activation/{$this->hash}";
+        $mail_message = "Перейдите по этой ссылке для подтверждения регистрации http://localhost:8080/authorization/activation/{$this->hash}";
 
         $subject_preferences = array(
             "input-charset" => $encoding,

@@ -6,7 +6,7 @@
 </head>
 <body>
     <?=$content?>
-    <div id="footer" class="hide-on-small-only">
+    <div id="footer">
         &copy; vsarapin
         <div style="float: right">2018</div>
     </div>

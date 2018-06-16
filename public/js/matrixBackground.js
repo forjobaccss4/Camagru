@@ -1,3 +1,8 @@
+var cabinet = document.getElementById("myCabinet");
+if (document.getElementById("user").innerHTML === "Гость") {
+    cabinet.remove();
+}
+
 var matrix = document.getElementById("matrix");
 var context = matrix.getContext("2d");
 matrix.height = document.documentElement.clientHeight;

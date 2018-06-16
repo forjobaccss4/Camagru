@@ -51,9 +51,8 @@ class Camagru extends Model {
             ErrorController::whooopsAction($this->route, "Должны быть заполнены оба поля с паролем!");
             exit;
         }
-        $pass = crypt(trim(htmlspecialchars(stripslashes($this->postArray['pass']))), "ZqbHp9lb");
-        $repass = crypt(trim(htmlspecialchars(stripslashes($this->postArray['repass']))), "ZqbHp9lb");
-        if (!hash_equals($pass, $repass)) {
+        $pass = password_hash($this->postArray['pass'], PASSWORD_DEFAULT);
+        if ($this->postArray['pass'] != $this->postArray['repass']) {
             ErrorController::whooopsAction($this->route, "Пароли не совпадают!");
             exit;
         }
