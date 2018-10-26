@@ -41,4 +41,4 @@ them and/or comment them.</li>
 <li>When an image receives a new comment, the author of the image is notified
 by email. This preference set as true by default but can be deactivated in
 user’s preferences.</li>
-<li>The list of images must be paginated, with at least 5 elements per page.</li>
+<li>The list of images is paginated, with 5 elements per page.</li>
