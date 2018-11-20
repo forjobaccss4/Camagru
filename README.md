@@ -1,6 +1,6 @@
 <b>The Camagru project</b>
 ### Main
-![Player](/gif/main.gif)
+![Main](/gif/main.gif)
 
 Authorized languages:<br>
 ◦ [<b>Server</b>] PHP<br>
@@ -24,6 +24,8 @@ All forms have correct validations and the whole site is secured:
 <li>No ability to upload unwanted content on the server.</li>
 <li>Protected against SQL injections.</li><br>
 
+### Galery
+![Galery](/gif/cam.gif)
 
 <b>User features:</b>
 <li>The application allow a user to sign up by asking at least a valid email
@@ -35,6 +37,9 @@ and his password. He also is able to tell the application to send a password
 reinitialisation mail, if he forget his password.</li>
 <li>The user is able to disconnect in one click at any time on any page.</li>
 <li>Once connected, an user can modify his username, mail address or password.</li><br>
+
+### Cabinet
+![Cabinet](/gif/cab.gif)
 
 <b>Gallery features:</b>
 <li>This part displays all the images edited by all the users,
