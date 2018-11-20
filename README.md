@@ -1,4 +1,6 @@
 <b>The Camagru project</b>
+### Main
+![Player](/gif/main.gif)
 
 Authorized languages:<br>
 ◦ [<b>Server</b>] PHP<br>
