@@ -24,9 +24,6 @@ All forms have correct validations and the whole site is secured:
 <li>No ability to upload unwanted content on the server.</li>
 <li>Protected against SQL injections.</li><br>
 
-### Camera
-![Camera](/gif/cam.gif)
-
 <b>User features:</b>
 <li>The application allow a user to sign up by asking at least a valid email
 address, an username and a password with at least a minimum level of complexity.</li>
@@ -49,3 +46,6 @@ them and/or comment them.</li>
 by email. This preference set as true by default but can be deactivated in
 user’s preferences.</li>
 <li>The list of images is paginated, with 5 elements per page.</li>
+
+### Camera
+![Camera](/gif/cam.gif)
